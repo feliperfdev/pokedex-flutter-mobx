@@ -49,8 +49,8 @@ class _PokedexState extends State<Pokedex> {
                   Expanded(
                     child: Container(
                       child: Observer(
-                        // name: 'ListaHomePage',
-                        builder: (BuildContext context) {
+                        name: 'PokeAPI',
+                        builder: (_) {
                           PokeAPI _pokeAPI = pokeApiStore.pokeAPI;
                           return (_pokeAPI != null)
                               ? AnimationLimiter(
@@ -69,7 +69,7 @@ class _PokedexState extends State<Pokedex> {
                                         duration:
                                             const Duration(milliseconds: 375),
                                         child: ScaleAnimation(
-                                          child: GestureDetector(
+                                          child: InkWell(
                                             child: PokeItem(
                                               index: index,
                                               nome: pokemon.name,

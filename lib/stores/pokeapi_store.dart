@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +16,18 @@ abstract class _PokeApiStoreBase with Store {
 
   @computed
   PokeAPI get pokeAPI => _pokeAPI;
+
+  @observable
+  Pokemon _pokemonAtual;
+
+  @observable
+  dynamic corPokemon;
+
+  @observable
+  int posicaoAtual;
+
+  @computed
+  Pokemon get pokemonAtual => _pokemonAtual;
 
   @action
   fetchPokeAPI() {
