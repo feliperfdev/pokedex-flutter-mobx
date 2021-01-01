@@ -1,3 +1,6 @@
 import 'package:flutter/material.dart';
 
-ThemeData themeScheme() => ThemeData();
+ThemeData themeScheme() => ThemeData(
+      scaffoldBackgroundColor: Colors.white,
+      primaryColor: Colors.blueGrey[900],
+    );

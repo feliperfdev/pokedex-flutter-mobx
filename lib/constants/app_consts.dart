@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 class ConstsApp {
+  static const String whitePokeball = 'assets/images/pokeball.png';
+  static const String darkPokeball = 'assets/images/pokeball_dark.png';
+
   static Color getColorType({String type}) {
     switch (type) {
       case 'Normal':
