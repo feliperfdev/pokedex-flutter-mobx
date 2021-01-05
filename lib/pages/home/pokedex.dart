@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:pokedex_flutter_mobx/constants/app_consts.dart';
 import 'package:pokedex_flutter_mobx/models/pokeapi.dart';
 import 'package:pokedex_flutter_mobx/pages/home/widgets/appBar.dart';
+import 'package:pokedex_flutter_mobx/pages/home/widgets/darkPokeball.dart';
 import 'package:pokedex_flutter_mobx/pages/home/widgets/pokeItem.dart';
 import 'package:pokedex_flutter_mobx/stores/pokeapi_store.dart';
 
@@ -23,25 +23,15 @@ class _PokedexState extends State<Pokedex> {
 
   @override
   Widget build(BuildContext context) {
-    Size screenSize = MediaQuery.of(context).size;
-    // double screenHeight = screenSize.height;
-    double screenWidth = screenSize.width;
+    // Size screenSize = MediaQuery.of(context).size;
+    // double screenWidth = screenSize.width;
     return SafeArea(
       child: Scaffold(
         body: Stack(
           alignment: Alignment.topCenter,
           clipBehavior: Clip.none,
           children: [
-            Positioned(
-              top: -(240 / 4.7),
-              left: screenWidth - (240 / 1.6),
-              child: Image.asset(
-                ConstsApp.darkPokeball,
-                color: Colors.grey.withOpacity(0.1),
-                height: 240,
-                width: 240,
-              ),
-            ),
+            DarkPokeball(),
             Container(
               child: Column(
                 children: [
@@ -71,6 +61,7 @@ class _PokedexState extends State<Pokedex> {
                                         child: ScaleAnimation(
                                           child: InkWell(
                                             child: PokeItem(
+                                              types: pokemon.type,
                                               index: index,
                                               nome: pokemon.name,
                                               image: pokeApiStore.getImage(

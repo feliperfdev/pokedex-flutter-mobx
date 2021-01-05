@@ -4,6 +4,9 @@
 Esse projeto serviu como uma boa base para os estudos da tecnologia de gerenciamento de estado MobX. <p>
 Neste link, está o projeto desenvolvido sem MobX e com diferenças no design: [Pokédex Flutter API](https://github.com/feliper2002/pokedex-flutter-api)
 
+## Screenshots da aplicação:
+
+<img src='screenshots/screenv1.jpg' width=200 title='Screen app version 1.0'>
 
 ## Técnologias Utilizadas:
 

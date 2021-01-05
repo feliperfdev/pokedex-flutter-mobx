@@ -1,15 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-var pokedexTitle = TextStyle(
+var pokedexTitle = GoogleFonts.pressStart2p(
   color: Colors.blueGrey[900],
-  fontSize: 40,
+  fontSize: 28,
   fontWeight: FontWeight.w500,
 );
 
-var pokemonName = TextStyle(
+var pokemonName = GoogleFonts.pressStart2p(
   color: Colors.white,
-  fontSize: 25,
+  fontSize: 16,
   fontWeight: FontWeight.w500,
 );
 

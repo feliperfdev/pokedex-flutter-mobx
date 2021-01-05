@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.pokedex_flutter_mobx">
+   <uses-permission android:name="android.permission.INTERNET" />
    <application
         android:label="pokedex_flutter_mobx"
         android:icon="@mipmap/ic_launcher">
