@@ -8,9 +8,21 @@ var pokedexTitle = GoogleFonts.pressStart2p(
   fontWeight: FontWeight.w500,
 );
 
+var pokedexDesc = GoogleFonts.pressStart2p(
+  color: Colors.blueGrey[900],
+  fontSize: 12,
+  // fontWeight: FontWeight.w300,
+);
+
 var pokemonName = GoogleFonts.pressStart2p(
   color: Colors.white,
   fontSize: 16,
+  fontWeight: FontWeight.w500,
+);
+
+var pokemonNameSmall = GoogleFonts.pressStart2p(
+  color: Colors.white,
+  fontSize: 12,
   fontWeight: FontWeight.w500,
 );
 

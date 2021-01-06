@@ -46,7 +46,7 @@ class LowOpacityPokeball extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(left: 1),
-      height: 180,
+      height: MediaQuery.of(context).size.height,
       width: 170,
       child: Image.asset(
         'assets/images/pokeball.png',
@@ -64,7 +64,7 @@ class PokemonPicture extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(left: 10),
-      height: 180,
+      height: MediaQuery.of(context).size.height,
       width: 160,
       child: pokeImage,
     );
@@ -83,7 +83,7 @@ class PokemonName extends StatelessWidget {
         alignment: Alignment.topRight,
         child: Text(
           nome,
-          style: pokemonName,
+          style: nome.length < 15 ? pokemonName : pokemonNameSmall,
         ),
       ),
     );
@@ -103,7 +103,7 @@ class PokeTypes extends StatelessWidget {
       child: Container(
         margin: EdgeInsets.only(bottom: 15),
         height: 92,
-        width: 170,
+        width: 150,
         child: ListView.builder(
             physics: BouncingScrollPhysics(),
             itemCount: types.length,

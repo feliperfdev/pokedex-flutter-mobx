@@ -8,12 +8,12 @@ class DarkPokeball extends StatelessWidget {
     double screenWidth = screenSize.width;
     return Positioned(
               top: -(240 / 4.7),
-              left: screenWidth - (240 / 1.6),
+              right: screenWidth - (240 / 0.8),
               child: Image.asset(
                 ConstsApp.darkPokeball,
-                color: Colors.grey.withOpacity(0.1),
-                height: 240,
-                width: 240,
+                color: Colors.grey.withOpacity(0.27),
+                height: 330,
+                width: 330,
               ),
             );
   }
