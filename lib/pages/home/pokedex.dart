@@ -14,17 +14,27 @@ class Pokedex extends StatefulWidget {
 
 class _PokedexState extends State<Pokedex> {
   PokeApiStore pokeApiStore;
+
+  int _currentPage = 0;
+  PageController _pageController = PageController(viewportFraction: 0.8);
+
   @override
   void initState() {
     super.initState();
     pokeApiStore = PokeApiStore();
     pokeApiStore.fetchPokeAPI();
+    _pageController.addListener(() {
+      int next = _pageController.page.round();
+      if (_currentPage != next) {
+        setState(() {
+          _currentPage = next;
+        });
+      }
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    // Size screenSize = MediaQuery.of(context).size;
-    // double screenWidth = screenSize.width;
     return SafeArea(
       child: Scaffold(
         body: Stack(
@@ -42,51 +52,26 @@ class _PokedexState extends State<Pokedex> {
                         name: 'PokeAPI',
                         builder: (_) {
                           PokeAPI _pokeAPI = pokeApiStore.pokeAPI;
+
                           return (_pokeAPI != null)
-                              ? AnimationLimiter(
-                                  child: ListView.builder(
-                                    physics: BouncingScrollPhysics(),
-                                    padding: EdgeInsets.all(12),
-                                    addAutomaticKeepAlives: true,
-                                    itemCount:
-                                        pokeApiStore.pokeAPI.pokemon.length,
-                                    itemBuilder: (context, index) {
-                                      Pokemon pokemon =
-                                          pokeApiStore.getPokemon(index: index);
-                                      return AnimationConfiguration
-                                          .staggeredList(
-                                        position: index,
-                                        duration:
-                                            const Duration(milliseconds: 375),
-                                        child: ScaleAnimation(
-                                          child: InkWell(
-                                            child: PokeItem(
-                                              types: pokemon.type,
-                                              index: index,
-                                              nome: pokemon.name,
-                                              image: pokeApiStore.getImage(
-                                                  numero: pokemon.num),
-                                            ),
-                                            onTap: () {
-                                              // _pokemonStore.setPokemonAtual(
-                                              //     index: index);
-                                              // Navigator.push(
-                                              //   context,
-                                              //   MaterialPageRoute(
-                                              //     builder:
-                                              //         (BuildContext context) =>
-                                              //             PokeDetailPage(
-                                              //       index: index,
-                                              //     ),
-                                              //     fullscreenDialog: true,
-                                              //   ),
-                                              // );
-                                            },
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                  ),
+                              ? PageView.builder(
+                                  controller: _pageController,
+                                  itemCount: _pokeAPI.pokemon.length,
+                                  itemBuilder: (_, index) {
+                                    Pokemon pokemon =
+                                        pokeApiStore.getPokemon(index: index);
+                                    bool actualPage = (index == _currentPage);
+                                    return PokeItem(
+                                      image: pokeApiStore.getImage(
+                                          numero: pokemon.num),
+                                      nome: pokemon.name,
+                                      color: pokeApiStore.corPokemon,
+                                      types: pokemon.type,
+                                      index: pokemon.id,
+                                      pokeNum: pokemon.num,
+                                      activePage: actualPage,
+                                    );
+                                  },
                                 )
                               : Center(
                                   child: CircularProgressIndicator(),
