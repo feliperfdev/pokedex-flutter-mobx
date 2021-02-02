@@ -14,6 +14,18 @@ var pokedexDesc = GoogleFonts.pressStart2p(
   // fontWeight: FontWeight.w300,
 );
 
+var pokemonTypeInfo = GoogleFonts.pressStart2p(
+  color: Colors.black,
+  fontSize: 14,
+  fontWeight: FontWeight.w500,
+);
+
+var pokemonBodyInfo = GoogleFonts.pressStart2p(
+  color: Colors.white,
+  fontSize: 12,
+  fontWeight: FontWeight.w300,
+);
+
 var pokemonName = GoogleFonts.pressStart2p(
   color: Colors.white,
   fontSize: 16,

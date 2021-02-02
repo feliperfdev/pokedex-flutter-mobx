@@ -70,6 +70,8 @@ class _PokedexState extends State<Pokedex> {
                                       index: pokemon.id,
                                       pokeNum: pokemon.num,
                                       activePage: actualPage,
+                                      height: pokemon.height,
+                                      weight: pokemon.weight,
                                     );
                                   },
                                 )

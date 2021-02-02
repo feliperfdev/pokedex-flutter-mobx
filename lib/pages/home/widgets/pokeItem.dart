@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex_flutter_mobx/constants/app_consts.dart';
+import 'package:pokedex_flutter_mobx/models/pokeapi.dart';
+import 'package:pokedex_flutter_mobx/stores/pokeapi_store.dart';
 import '../../../styles/textStyles.dart';
 
 class PokeItem extends StatelessWidget {
@@ -9,15 +11,22 @@ class PokeItem extends StatelessWidget {
   final bool activePage;
   Color color;
   final Widget image;
+  final String height;
+  final String weight;
   final List<String> types;
-  PokeItem(
-      {this.image,
-      this.color,
-      this.index,
-      this.nome,
-      this.types,
-      this.pokeNum,
-      this.activePage});
+  PokeItem({
+    this.image,
+    this.color,
+    this.index,
+    this.nome,
+    this.types,
+    this.pokeNum,
+    this.activePage,
+    this.height,
+    this.weight,
+  });
+
+  PokeApiStore pokeApiStore = PokeApiStore();
 
   @override
   Widget build(BuildContext context) {
@@ -43,32 +52,57 @@ class PokeItem extends StatelessWidget {
           ),
         ],
       ),
-      child: Container(
-        margin: EdgeInsets.only(bottom: (modelHeight + 100)),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          color: color,
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Text(
-              '#$pokeNum',
-              style: pokemonName,
+      child: Column(
+        children: [
+          Container(
+            padding: EdgeInsets.only(top: 20, bottom: 10),
+            margin: EdgeInsets.only(bottom: 30),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              color: color,
             ),
-            Stack(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                LowOpacityPokeball(),
-                PokemonPicture(
-                  pokeImage: image,
+                Text(
+                  '#$pokeNum',
+                  style: pokemonName,
+                ),
+                Stack(
+                  children: [
+                    LowOpacityPokeball(),
+                    PokemonPicture(
+                      pokeImage: image,
+                    ),
+                  ],
+                ),
+                PokemonName(
+                  nome: nome,
                 ),
               ],
             ),
-            PokemonName(
-              nome: nome,
+          ),
+          Text('Types', style: pokemonTypeInfo),
+          PokeTypes(
+            types: types,
+          ),
+          Divider(thickness: 3),
+          Container(
+            height: 30,
+            width: size.width / 1.5,
+            decoration: BoxDecoration(
+              color: color,
+              borderRadius: BorderRadius.circular(30),
             ),
-          ],
-        ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text('H: ${height} /', style: pokemonBodyInfo),
+                Text('W: ${weight}', style: pokemonBodyInfo),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -106,6 +140,21 @@ class PokemonPicture extends StatelessWidget {
   }
 }
 
+class NextEvoPokemonPicture extends StatelessWidget {
+  final Widget pokeImage;
+  NextEvoPokemonPicture({this.pokeImage});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.only(left: 10, top: 12),
+      height: MediaQuery.of(context).size.height / 5.8,
+      width: 130,
+      child: pokeImage,
+    );
+  }
+}
+
 class PokemonName extends StatelessWidget {
   final String nome;
   PokemonName({this.nome});
@@ -134,12 +183,12 @@ class PokeTypes extends StatelessWidget {
   Widget build(BuildContext context) {
     color = ConstsApp.getColorType(type: types[0]);
     return Align(
-      alignment: Alignment.bottomRight,
+      alignment: Alignment.topLeft,
       child: Container(
-        margin: EdgeInsets.only(bottom: 15),
-        height: 92,
-        width: 150,
+        height: 50,
+        width: 190,
         child: ListView.builder(
+            scrollDirection: Axis.horizontal,
             physics: BouncingScrollPhysics(),
             itemCount: types.length,
             itemBuilder: (context, index) {
