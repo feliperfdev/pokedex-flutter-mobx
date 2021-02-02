@@ -88,16 +88,16 @@ class PokeItem extends StatelessWidget {
           ),
           Divider(thickness: 3),
           Container(
-            height: 30,
+            height: 40,
             width: size.width / 1.5,
             decoration: BoxDecoration(
               color: color,
               borderRadius: BorderRadius.circular(30),
             ),
-            child: Row(
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Text('H: ${height} /', style: pokemonBodyInfo),
+                Text('H: ${height}', style: pokemonBodyInfo),
                 Text('W: ${weight}', style: pokemonBodyInfo),
               ],
             ),
@@ -135,21 +135,6 @@ class PokemonPicture extends StatelessWidget {
       padding: EdgeInsets.only(left: 10, top: 12),
       height: MediaQuery.of(context).size.height / 5,
       width: 160,
-      child: pokeImage,
-    );
-  }
-}
-
-class NextEvoPokemonPicture extends StatelessWidget {
-  final Widget pokeImage;
-  NextEvoPokemonPicture({this.pokeImage});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.only(left: 10, top: 12),
-      height: MediaQuery.of(context).size.height / 5.8,
-      width: 130,
       child: pokeImage,
     );
   }

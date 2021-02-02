@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:pokedex_flutter_mobx/models/pokeapi.dart';
 import 'package:pokedex_flutter_mobx/pages/home/widgets/appBar.dart';
 import 'package:pokedex_flutter_mobx/pages/home/widgets/darkPokeball.dart';
-import 'package:pokedex_flutter_mobx/pages/home/widgets/pokeItem.dart';
 import 'package:pokedex_flutter_mobx/stores/pokeapi_store.dart';
+
+import 'widgets/pokeItem.dart';
 
 class Pokedex extends StatefulWidget {
   @override
