@@ -14,6 +14,7 @@ class PokeItem extends StatelessWidget {
   final String height;
   final String weight;
   final List<String> types;
+  final List<String> weak;
   PokeItem({
     this.image,
     this.color,
@@ -24,20 +25,18 @@ class PokeItem extends StatelessWidget {
     this.activePage,
     this.height,
     this.weight,
+    this.weak,
   });
-
-  PokeApiStore pokeApiStore = PokeApiStore();
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    double modelHeight = size.height / (4.46);
     color = ConstsApp.getColorType(type: types[0]);
-    final double offset = this.activePage ? 20 : 0;
-    final double blurRadius = this.activePage ? 20 : 0;
+    final double offset = this.activePage ? 10 : 0;
+    final double blurRadius = this.activePage ? 18 : 0;
     final double containerMenor = this.activePage ? 8 : 40;
     return AnimatedContainer(
-      duration: Duration(microseconds: 500),
+      duration: Duration(milliseconds: 500),
       margin:
           EdgeInsets.only(top: containerMenor, bottom: 20, left: 8, right: 8),
       height: size.height / (4.46),
@@ -97,8 +96,21 @@ class PokeItem extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Text('H: ${height}', style: pokemonBodyInfo),
-                Text('W: ${weight}', style: pokemonBodyInfo),
+                Text('Height: ${height}', style: pokemonBodyInfo),
+                Text('Weight: ${weight}', style: pokemonBodyInfo),
+              ],
+            ),
+          ),
+          Divider(thickness: 3),
+          SizedBox(height: 10),
+          Container(
+            child: Column(
+              children: [
+                Text('Weakness', style: pokemonTypeInfo),
+                Weakness(
+                  activePage: activePage,
+                  types: weak,
+                ),
               ],
             ),
           ),
@@ -166,17 +178,18 @@ class PokeTypes extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    color = ConstsApp.getColorType(type: types[0]);
+    Size size = MediaQuery.of(context).size;
     return Align(
       alignment: Alignment.topLeft,
       child: Container(
-        height: 50,
-        width: 190,
+        height: size.height / 15,
+        width: size.width / 1.2,
         child: ListView.builder(
             scrollDirection: Axis.horizontal,
             physics: BouncingScrollPhysics(),
             itemCount: types.length,
             itemBuilder: (context, index) {
+              color = ConstsApp.getColorType(type: types[index]);
               return Card(
                 elevation: 1,
                 margin: EdgeInsets.all(8),
@@ -185,6 +198,52 @@ class PokeTypes extends StatelessWidget {
                     borderRadius: BorderRadius.circular(30)),
                 child: Container(
                   padding: EdgeInsets.all(5),
+                  child: Text(
+                    types[index],
+                    style: typeName,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              );
+            }),
+      ),
+    );
+  }
+}
+
+class Weakness extends StatelessWidget {
+  final List<String> types;
+  final bool activePage;
+  Weakness({this.types, this.activePage});
+  Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    final double heightWeak = activePage ? 92 : 10;
+    return Align(
+      alignment: Alignment.topLeft,
+      child: AnimatedContainer(
+        duration: Duration(milliseconds: 500),
+        height: heightWeak,
+        width: size.width / 1.3,
+        child: GridView.builder(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              childAspectRatio: activePage ? 0.4 : 0.8,
+              crossAxisCount: 2,
+            ),
+            scrollDirection: Axis.horizontal,
+            itemCount: types.length,
+            itemBuilder: (context, index) {
+              color = ConstsApp.getColorType(type: types[index]);
+              return Card(
+                elevation: 1,
+                margin: EdgeInsets.all(8),
+                color: color.withAlpha(190).withOpacity(0.7),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30)),
+                child: Container(
+                  padding: EdgeInsets.all(3),
                   child: Text(
                     types[index],
                     style: typeName,

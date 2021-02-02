@@ -72,6 +72,7 @@ class _PokedexState extends State<Pokedex> {
                                       activePage: actualPage,
                                       height: pokemon.height,
                                       weight: pokemon.weight,
+                                      weak: pokemon.weaknesses,
                                     );
                                   },
                                 )
