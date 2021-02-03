@@ -11,13 +11,13 @@ class Weakness extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    final double heightWeak = activePage ? 92 : 10;
+    final double heightWeak = activePage ? (size.height / 8) : 10;
     return Align(
       alignment: Alignment.topLeft,
       child: AnimatedContainer(
         duration: Duration(milliseconds: 500),
         height: heightWeak,
-        width: size.width / 1.3,
+        width: size.width / 1.2,
         child: GridView.builder(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               childAspectRatio: activePage ? 0.4 : 0.8,

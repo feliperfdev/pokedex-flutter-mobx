@@ -57,8 +57,8 @@ class PokeItem extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            padding: EdgeInsets.only(top: 20, bottom: 10),
-            margin: EdgeInsets.only(bottom: 30),
+            padding: EdgeInsets.only(top: 20, bottom: 5),
+            margin: EdgeInsets.only(bottom: 20),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               color: color,
@@ -70,13 +70,17 @@ class PokeItem extends StatelessWidget {
                   '#$pokeNum',
                   style: pokemonName,
                 ),
-                Stack(
-                  children: [
-                    LowOpacityPokeball(),
-                    PokemonPicture(
-                      pokeImage: image,
-                    ),
-                  ],
+                AnimatedContainer(
+                  duration: Duration(milliseconds: 500),
+                  height: !activePage ? 0 : 170,
+                  child: Stack(
+                    children: [
+                      LowOpacityPokeball(),
+                      PokemonPicture(
+                        pokeImage: image,
+                      ),
+                    ],
+                  ),
                 ),
                 PokemonName(
                   nome: nome,

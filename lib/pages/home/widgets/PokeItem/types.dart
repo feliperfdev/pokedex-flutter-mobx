@@ -28,7 +28,7 @@ class PokeTypes extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30)),
                 child: Container(
-                  padding: EdgeInsets.all(5),
+                  padding: EdgeInsets.all(4),
                   child: Text(
                     types[index],
                     style: typeName,
