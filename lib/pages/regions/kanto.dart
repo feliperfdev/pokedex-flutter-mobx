@@ -22,7 +22,7 @@ class _KantoState extends State<Kanto> {
   void initState() {
     super.initState();
     pokeApiStore = PokeApiStore();
-    print('Tentando dar fetch na API de Johto...');
+    print('Tentando dar fetch na API de Kanto...');
     pokeApiStore.fetchPokeAPIKanto();
     print('Ótimo!! Conseguimos dar o fetch!');
     _pageController.addListener(() {

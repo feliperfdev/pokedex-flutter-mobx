@@ -23,7 +23,7 @@ class _HoennState extends State<Hoenn> {
   void initState() {
     super.initState();
     pokeApiStore = PokeApiStore();
-    print('Tentando dar fetch na API de Johto...');
+    print('Tentando dar fetch na API de Hoenn...');
     pokeApiStore.fetchPokeAPIHoenn();
     print('Ótimo!! Conseguimos dar o fetch!');
     _pageController.addListener(() {
@@ -52,7 +52,7 @@ class _HoennState extends State<Hoenn> {
                   Expanded(
                     child: Container(
                       child: Observer(
-                        name: 'PokeAPIJohto',
+                        name: 'PokeAPIHoenn',
                         builder: (_) {
                           List<PokeAPIHoenn> _hoennAPI = pokeApiStore.apiHoenn;
                           hoenndex = _hoennAPI;
