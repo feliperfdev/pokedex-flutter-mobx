@@ -90,7 +90,7 @@ class PokeItem extends StatelessWidget {
           ),
           Divider(thickness: 3),
           Container(
-            height: 40,
+            padding: EdgeInsets.all(10),
             width: size.width / 1.5,
             decoration: BoxDecoration(
               color: color,

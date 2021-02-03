@@ -4,13 +4,13 @@ import 'package:google_fonts/google_fonts.dart';
 
 var pokedexTitle = GoogleFonts.pressStart2p(
   color: Colors.blueGrey[900],
-  fontSize: 28,
+  fontSize: 24,
   fontWeight: FontWeight.w500,
 );
 
 var pokedexDesc = GoogleFonts.pressStart2p(
   color: Colors.blueGrey[900],
-  fontSize: 12,
+  fontSize: 9,
   // fontWeight: FontWeight.w300,
 );
 
