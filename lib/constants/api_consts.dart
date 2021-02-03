@@ -2,8 +2,8 @@ class ConstsAPI {
   static String pokeAPIKanto =
       'https://raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/pokedex.json';
   static String pokeAPIJohto =
-      'https://pokeapi.co/api/v2/pokemon?limit=100&offset=151';
+      'https://pokemon-go-lingen.github.io/pokemon-go-api/api/pokedex/generation/2.json';
   static String pokeAPIHoeen =
-      'https://pokeapi.co/api/v2/pokemon?limit=133&offset=251';
+      'https://pokemon-go-lingen.github.io/pokemon-go-api/api/pokedex/generation/3.json';
   static getColorType({String type}) {} //Numero na Frente
 }

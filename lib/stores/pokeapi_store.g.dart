@@ -16,6 +16,13 @@ mixin _$PokeApiStore on _PokeApiStoreBase, Store {
       (_$pokeAPIComputed ??= Computed<PokeAPI>(() => super.pokeAPI,
               name: '_PokeApiStoreBase.pokeAPI'))
           .value;
+  Computed<List<PokeAPIJohto>> _$apiJohtoComputed;
+
+  @override
+  List<PokeAPIJohto> get apiJohto =>
+      (_$apiJohtoComputed ??= Computed<List<PokeAPIJohto>>(() => super.apiJohto,
+              name: '_PokeApiStoreBase.apiJohto'))
+          .value;
 
   final _$_pokeAPIAtom = Atom(name: '_PokeApiStoreBase._pokeAPI');
 
@@ -29,6 +36,21 @@ mixin _$PokeApiStore on _PokeApiStoreBase, Store {
   set _pokeAPI(PokeAPI value) {
     _$_pokeAPIAtom.reportWrite(value, super._pokeAPI, () {
       super._pokeAPI = value;
+    });
+  }
+
+  final _$_apiJohtoAtom = Atom(name: '_PokeApiStoreBase._apiJohto');
+
+  @override
+  List<PokeAPIJohto> get _apiJohto {
+    _$_apiJohtoAtom.reportRead();
+    return super._apiJohto;
+  }
+
+  @override
+  set _apiJohto(List<PokeAPIJohto> value) {
+    _$_apiJohtoAtom.reportWrite(value, super._apiJohto, () {
+      super._apiJohto = value;
     });
   }
 
@@ -98,7 +120,8 @@ mixin _$PokeApiStore on _PokeApiStoreBase, Store {
   String toString() {
     return '''
 corPokemon: ${corPokemon},
-pokeAPI: ${pokeAPI}
+pokeAPI: ${pokeAPI},
+apiJohto: ${apiJohto}
     ''';
   }
 }
