@@ -89,10 +89,13 @@ abstract class _PokeApiStoreBase with Store {
         final pokemon = PokeAPIJohto.fromJson(poke);
         _johtodex.add(pokemon);
       }
+      print('Sucesso! Adicionou na lista!');
+      print('Foram adicionados ${_johtodex.length} pokémon na lista!');
     } catch (e) {
       print('Response API error');
       return null;
     }
+    print('Sucesso! Retornou!');
     return _johtodex;
   }
 }

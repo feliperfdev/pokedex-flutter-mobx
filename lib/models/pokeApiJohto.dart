@@ -1,11 +1,13 @@
 class PokeAPIJohto {
   String id;
+  int dexNr;
   Names names;
   Stats stats;
   PrimaryType primaryType;
 
   PokeAPIJohto({
     this.id,
+    this.dexNr,
     this.names,
     this.stats,
     this.primaryType,
@@ -13,6 +15,7 @@ class PokeAPIJohto {
 
   PokeAPIJohto.fromJson(Map<String, dynamic> json) {
     id = json['id'];
+    dexNr = json['dexNr'];
     names = json['names'] != null ? new Names.fromJson(json['names']) : null;
     stats = json['stats'] != null ? new Stats.fromJson(json['stats']) : null;
     primaryType = json['primaryType'] != null
@@ -23,6 +26,7 @@ class PokeAPIJohto {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
+    data['dexNr'] = this.dexNr;
     if (this.names != null) {
       data['names'] = this.names.toJson();
     }

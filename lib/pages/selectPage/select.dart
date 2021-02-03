@@ -19,7 +19,9 @@ class SelectPage extends StatelessWidget {
             ),
             RegionButton(
               name: 'Johto',
-              onTap: null,
+              onTap: () {
+                Navigator.pushReplacementNamed(context, '/johto');
+              },
             ),
             RegionButton(
               name: 'Hoenn',

@@ -117,7 +117,7 @@ class PokeItem extends StatelessWidget {
                 SizedBox(height: 8),
                 Weakness(
                   activePage: activePage,
-                  types: weak,
+                  types: weak == null ? [] : weak,
                 ),
               ],
             ),

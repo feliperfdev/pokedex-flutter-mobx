@@ -4,7 +4,6 @@ import 'package:pokedex_flutter_mobx/models/pokeApiJohto.dart';
 import 'package:pokedex_flutter_mobx/pages/widgets/PokeItem/pokeItem.dart';
 import 'package:pokedex_flutter_mobx/pages/widgets/appBar.dart';
 import 'package:pokedex_flutter_mobx/pages/widgets/darkPokeball.dart';
-import 'package:pokedex_flutter_mobx/repositories/johtoRepo.dart';
 import 'package:pokedex_flutter_mobx/stores/pokeapi_store.dart';
 
 class Johto extends StatefulWidget {
@@ -23,7 +22,9 @@ class _JohtoState extends State<Johto> {
   void initState() {
     super.initState();
     pokeApiStore = PokeApiStore();
+    print('Tentando dar fetch na API de Johto...');
     pokeApiStore.fetchPokeAPIJohto();
+    print('Ótimo!! Conseguimos dar o fetch!');
     _pageController.addListener(() {
       int next = _pageController.page.round();
       if (_currentPage != next) {
@@ -33,16 +34,6 @@ class _JohtoState extends State<Johto> {
       }
     });
   }
-
-  // Future<List<PokeAPIJohto>> johtoFetch() async {
-  //   final johtoRepository = JohtoRepository();
-  //   johtodex = await johtoRepository.loadPokeAPIJohto();
-  //   print(johtodex[1].names.english);
-  //   print(johtodex[2].names.english);
-  //   print(johtodex[3].names.english);
-  //   print(johtodex[98].names.english);
-  //   return johtodex;
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -63,16 +54,24 @@ class _JohtoState extends State<Johto> {
                         name: 'PokeAPIJohto',
                         builder: (_) {
                           List<PokeAPIJohto> _johtoAPI = pokeApiStore.apiJohto;
-                          print(_johtoAPI.length?.toString());
+                          johtodex = _johtoAPI;
                           return (_johtoAPI != null)
                               ? PageView.builder(
                                   controller: _pageController,
-                                  itemCount: johtodex.length ?? 0,
+                                  itemCount: _johtoAPI.length,
                                   itemBuilder: (_, index) {
                                     bool actualPage = (index == _currentPage);
+                                    int id = _johtoAPI[index].dexNr;
+                                    String numero = id.toString();
                                     return PokeItem(
-                                      nome: johtodex[index].names.english,
+                                      nome: _johtoAPI[index].names.english,
+                                      image: pokeApiStore.getImage(
+                                        numero: numero,
+                                      ),
                                       activePage: actualPage,
+                                      color: pokeApiStore.corPokemon,
+                                      pokeNum: numero,
+                                      types: listTypes(index),
                                     );
                                   },
                                 )
@@ -90,5 +89,14 @@ class _JohtoState extends State<Johto> {
         ),
       ),
     );
+  }
+
+  List<String> listTypes(int index) {
+    List<String> types = [];
+    for (var i = 0; i < 1; i++) {
+      types.add(johtodex[index].primaryType.names.english);
+      // types.add(johtodex[index].names.japanese);
+    }
+    return types;
   }
 }
