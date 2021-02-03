@@ -4,6 +4,7 @@ import 'package:pokedex_flutter_mobx/models/pokeApiJohto.dart';
 import 'package:pokedex_flutter_mobx/pages/widgets/PokeItem/pokeItem.dart';
 import 'package:pokedex_flutter_mobx/pages/widgets/appBar.dart';
 import 'package:pokedex_flutter_mobx/pages/widgets/darkPokeball.dart';
+import 'package:pokedex_flutter_mobx/stores/johtoapi_store.dart';
 import 'package:pokedex_flutter_mobx/stores/pokeapi_store.dart';
 
 class Johto extends StatefulWidget {
@@ -12,7 +13,7 @@ class Johto extends StatefulWidget {
 }
 
 class _JohtoState extends State<Johto> {
-  PokeApiStore pokeApiStore;
+  JohtoApiStore johtoApiStore;
 
   int _currentPage = 0;
   PageController _pageController = PageController(viewportFraction: 0.8);
@@ -21,9 +22,9 @@ class _JohtoState extends State<Johto> {
   @override
   void initState() {
     super.initState();
-    pokeApiStore = PokeApiStore();
+    johtoApiStore = JohtoApiStore();
     print('Tentando dar fetch na API de Johto...');
-    pokeApiStore.fetchPokeAPIJohto();
+    johtoApiStore.fetchPokeAPIJohto();
     print('Ótimo!! Conseguimos dar o fetch!');
     _pageController.addListener(() {
       int next = _pageController.page.round();
@@ -53,7 +54,7 @@ class _JohtoState extends State<Johto> {
                       child: Observer(
                         name: 'PokeAPIJohto',
                         builder: (_) {
-                          List<PokeAPIJohto> _johtoAPI = pokeApiStore.apiJohto;
+                          List<PokeAPIJohto> _johtoAPI = johtoApiStore.apiJohto;
                           johtodex = _johtoAPI;
                           return (_johtoAPI != null)
                               ? PageView.builder(
@@ -65,11 +66,11 @@ class _JohtoState extends State<Johto> {
                                     String numero = id.toString();
                                     return PokeItem(
                                       nome: _johtoAPI[index].names.english,
-                                      image: pokeApiStore.getImage(
+                                      image: johtoApiStore.getImage(
                                         numero: numero,
                                       ),
                                       activePage: actualPage,
-                                      color: pokeApiStore.corPokemon,
+                                      color: johtoApiStore.corPokemon,
                                       pokeNum: numero,
                                       types: listTypes(index),
                                       stats: {

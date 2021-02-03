@@ -5,6 +5,7 @@ import 'package:pokedex_flutter_mobx/models/pokeApiJohto.dart';
 import 'package:pokedex_flutter_mobx/pages/widgets/PokeItem/pokeItem.dart';
 import 'package:pokedex_flutter_mobx/pages/widgets/appBar.dart';
 import 'package:pokedex_flutter_mobx/pages/widgets/darkPokeball.dart';
+import 'package:pokedex_flutter_mobx/stores/hoennapi_store.dart';
 import 'package:pokedex_flutter_mobx/stores/pokeapi_store.dart';
 
 class Hoenn extends StatefulWidget {
@@ -13,7 +14,7 @@ class Hoenn extends StatefulWidget {
 }
 
 class _HoennState extends State<Hoenn> {
-  PokeApiStore pokeApiStore;
+  HoennApiStore hoennApiStore;
 
   int _currentPage = 0;
   PageController _pageController = PageController(viewportFraction: 0.8);
@@ -22,9 +23,9 @@ class _HoennState extends State<Hoenn> {
   @override
   void initState() {
     super.initState();
-    pokeApiStore = PokeApiStore();
+    hoennApiStore = HoennApiStore();
     print('Tentando dar fetch na API de Hoenn...');
-    pokeApiStore.fetchPokeAPIHoenn();
+    hoennApiStore.fetchPokeAPIHoenn();
     print('Ótimo!! Conseguimos dar o fetch!');
     _pageController.addListener(() {
       int next = _pageController.page.round();
@@ -54,7 +55,7 @@ class _HoennState extends State<Hoenn> {
                       child: Observer(
                         name: 'PokeAPIHoenn',
                         builder: (_) {
-                          List<PokeAPIHoenn> _hoennAPI = pokeApiStore.apiHoenn;
+                          List<PokeAPIHoenn> _hoennAPI = hoennApiStore.apiHoenn;
                           hoenndex = _hoennAPI;
                           return (_hoennAPI != null)
                               ? PageView.builder(
@@ -66,11 +67,11 @@ class _HoennState extends State<Hoenn> {
                                     String numero = id.toString();
                                     return PokeItem(
                                       nome: _hoennAPI[index].names.english,
-                                      image: pokeApiStore.getImage(
+                                      image: hoennApiStore.getImage(
                                         numero: numero,
                                       ),
                                       activePage: actualPage,
-                                      color: pokeApiStore.corPokemon,
+                                      color: hoennApiStore.corPokemon,
                                       pokeNum: numero,
                                       types: listTypes(index),
                                       stats: {

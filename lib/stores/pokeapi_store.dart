@@ -1,12 +1,9 @@
-import 'dart:convert';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pokedex_flutter_mobx/constants/api_consts.dart';
-import 'package:pokedex_flutter_mobx/models/pokeApiHoenn.dart';
-import 'package:pokedex_flutter_mobx/models/pokeApiJohto.dart';
 import 'package:pokedex_flutter_mobx/models/pokeapi.dart';
 part 'pokeapi_store.g.dart';
 
@@ -22,22 +19,6 @@ abstract class _PokeApiStoreBase with Store {
   @computed
   List<PokeAPI> get apiKanto => _apiKanto;
 // =====================================
-
-// Johto =====================================
-  @observable
-  List<PokeAPIJohto> _apiJohto;
-
-  @computed
-  List<PokeAPIJohto> get apiJohto => _apiJohto;
-// ==========================================
-
-// Hoenn =====================================
-  @observable
-  List<PokeAPIHoenn> _apiHoenn;
-
-  @computed
-  List<PokeAPIHoenn> get apiHoenn => _apiHoenn;
-// ==========================================
 
   @observable
   dynamic corPokemon;
@@ -86,71 +67,4 @@ abstract class _PokeApiStoreBase with Store {
     print('Sucesso! Retornou!');
     return _kantodex;
   }
-
-////////////////////////////////////////////////////////////////////
-
-////////////////////// JOHTO ////////////////////////
-  @action
-  fetchPokeAPIJohto() {
-    _apiJohto = null;
-    loadPokeAPIJohto().then((value) {
-      _apiJohto = value;
-    });
-  }
-
-  Future<List<PokeAPIJohto>> loadPokeAPIJohto() async {
-    final response = await dio.get(ConstsAPI.pokeAPIJohto);
-    final list = response.data as List;
-
-    List<PokeAPIJohto> _johtodex;
-    _johtodex = [];
-    try {
-      // if (response.statusCode == 200) print(response.statusCode.toString());
-      for (var poke in list) {
-        final pokemon = PokeAPIJohto.fromJson(poke);
-        _johtodex.add(pokemon);
-      }
-      print('Sucesso! Adicionou na lista!');
-      print('Foram adicionados ${_johtodex.length} pokémon na lista!');
-    } catch (e) {
-      print('Response API error');
-      return null;
-    }
-    print('Sucesso! Retornou!');
-    return _johtodex;
-  }
-
-////////////////////////////////////////////////////////////////////
-
-////////////////////// HOENN ////////////////////////
-  @action
-  fetchPokeAPIHoenn() {
-    _apiHoenn = null;
-    loadPokeAPIHoenn().then((value) {
-      _apiHoenn = value;
-    });
-  }
-
-  Future<List<PokeAPIHoenn>> loadPokeAPIHoenn() async {
-    final response = await dio.get(ConstsAPI.pokeAPIHoeen);
-    final list = response.data as List;
-
-    List<PokeAPIHoenn> _hoenndex;
-    _hoenndex = [];
-    try {
-      // if (response.statusCode == 200) print(response.statusCode.toString());
-      for (var poke in list) {
-        final pokemon = PokeAPIHoenn.fromJson(poke);
-        _hoenndex.add(pokemon);
-      }
-      print('Sucesso! Adicionou na lista!');
-      print('Foram adicionados ${_hoenndex.length} pokémon na lista!');
-    } catch (e) {
-      print('Response API error');
-      return null;
-    }
-    print('Sucesso! Retornou!');
-    return _hoenndex;
-  }
 }
-////////////////////////////////////////////////////////////////////
