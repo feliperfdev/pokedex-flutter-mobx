@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex_flutter_mobx/constants/app_consts.dart';
+import 'package:pokedex_flutter_mobx/pages/widgets/PokeItem/stats.dart';
 import 'package:pokedex_flutter_mobx/styles/textStyles.dart';
 import 'opacityPokeball.dart';
 import 'picture.dart';
@@ -12,11 +13,9 @@ class PokeItem extends StatelessWidget {
   final String pokeNum;
   final bool activePage;
   Color color;
+  Map<String, dynamic> stats;
   final Widget image;
-  final String height;
-  final String weight;
   final List<String> types;
-  final List<String> weak;
   PokeItem({
     this.image,
     this.color,
@@ -25,9 +24,7 @@ class PokeItem extends StatelessWidget {
     this.types,
     this.pokeNum,
     this.activePage,
-    this.height,
-    this.weight,
-    this.weak,
+    this.stats,
   });
 
   @override
@@ -97,14 +94,7 @@ class PokeItem extends StatelessWidget {
           ),
           Divider(thickness: 3),
           SizedBox(height: 10),
-          Container(
-            child: Column(
-              children: [
-                Text('STATS', style: pokemonTypeInfo),
-                SizedBox(height: 8),
-              ],
-            ),
-          ),
+          Stats(stats: stats),
         ],
       ),
     );

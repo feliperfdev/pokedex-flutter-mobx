@@ -20,6 +20,18 @@ var pokemonTypeInfo = GoogleFonts.pressStart2p(
   fontWeight: FontWeight.w500,
 );
 
+var pokemonStatsInfo = GoogleFonts.pressStart2p(
+  color: Colors.black,
+  fontSize: 14,
+  fontWeight: FontWeight.w500,
+);
+
+var pokemonStatsValuesInfo = GoogleFonts.pressStart2p(
+  color: Colors.grey,
+  fontSize: 11,
+  fontWeight: FontWeight.w300,
+);
+
 var pokemonBodyInfo = GoogleFonts.pressStart2p(
   color: Colors.white,
   fontSize: 12,
