@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:pokedex_flutter_mobx/models/pokeapi.dart';
-import 'package:pokedex_flutter_mobx/pages/home/widgets/appBar.dart';
-import 'package:pokedex_flutter_mobx/pages/home/widgets/darkPokeball.dart';
+import 'package:pokedex_flutter_mobx/pages/widgets/PokeItem/pokeItem.dart';
+import 'package:pokedex_flutter_mobx/pages/widgets/appBar.dart';
+import 'package:pokedex_flutter_mobx/pages/widgets/darkPokeball.dart';
 import 'package:pokedex_flutter_mobx/stores/pokeapi_store.dart';
 
-import 'widgets/PokeItem/pokeItem.dart';
-
-class Pokedex extends StatefulWidget {
+class Kanto extends StatefulWidget {
   @override
-  _PokedexState createState() => _PokedexState();
+  _KantoState createState() => _KantoState();
 }
 
-class _PokedexState extends State<Pokedex> {
+class _KantoState extends State<Kanto> {
   PokeApiStore pokeApiStore;
 
   int _currentPage = 0;

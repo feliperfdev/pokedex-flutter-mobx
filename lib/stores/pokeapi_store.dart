@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pokedex_flutter_mobx/constants/api_consts.dart';
 import 'package:pokedex_flutter_mobx/models/pokeapi.dart';
-import 'package:http/http.dart' as http;
 part 'pokeapi_store.g.dart';
 
 class PokeApiStore = _PokeApiStoreBase with _$PokeApiStore;
@@ -18,21 +18,12 @@ abstract class _PokeApiStoreBase with Store {
   PokeAPI get pokeAPI => _pokeAPI;
 
   @observable
-  Pokemon _pokemonAtual;
-
-  @observable
   dynamic corPokemon;
-
-  @observable
-  int posicaoAtual;
-
-  @computed
-  Pokemon get pokemonAtual => _pokemonAtual;
 
   @action
   fetchPokeAPI() {
     _pokeAPI = null;
-    loadPokeAPI().then((pokelist) {
+    loadPokeAPIKanto().then((pokelist) {
       _pokeAPI = pokelist;
     });
   }
@@ -53,10 +44,31 @@ abstract class _PokeApiStoreBase with Store {
     );
   }
 
-  Future<PokeAPI> loadPokeAPI() async {
+  Dio dio = Dio();
+  Future<PokeAPI> loadPokeAPIKanto() async {
     try {
-      final response = await http.get(ConstsAPI.pokeapiURL);
-      var decodedJson = jsonDecode(response.body);
+      final response = await dio.get(ConstsAPI.pokeAPIKanto);
+      var decodedJson = jsonDecode(response.data);
+      return PokeAPI.fromJson(decodedJson);
+    } catch (e) {
+      print('Erro ao carregar API');
+      return null;
+    }
+  }
+
+////////////////////// JOHTO ////////////////////////
+  @action
+  fetchPokeAPIJohto() {
+    _pokeAPI = null;
+    loadPokeAPIJohto().then((pokelist) {
+      _pokeAPI = pokelist;
+    });
+  }
+
+  Future<PokeAPI> loadPokeAPIJohto() async {
+    try {
+      final response = await dio.get(ConstsAPI.pokeAPIJohto);
+      var decodedJson = jsonDecode(response.data);
       return PokeAPI.fromJson(decodedJson);
     } catch (e) {
       print('Erro ao carregar API');
@@ -64,3 +76,4 @@ abstract class _PokeApiStoreBase with Store {
     }
   }
 }
+////////////////////////////////////////////////////////////////////

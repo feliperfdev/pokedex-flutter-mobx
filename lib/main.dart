@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex_flutter_mobx/pages/PokeModel/pokeModel.dart';
-import 'package:pokedex_flutter_mobx/pages/home/pokedex.dart';
+import 'package:pokedex_flutter_mobx/pages/regions/kanto.dart';
 import 'package:pokedex_flutter_mobx/styles/themeScheme.dart';
 
 void main() => runApp(InitApp());
@@ -13,11 +12,10 @@ class InitApp extends StatelessWidget {
     return MaterialApp(
       title: 'Pokédex',
       debugShowCheckedModeBanner: false,
-      initialRoute: '/pokedex',
+      initialRoute: '/kanto',
       theme: themeScheme(),
       routes: {
-        '/pokedex': (context) => Pokedex(),
-        '/pokemodel': (context) => PokeModel(),
+        '/kanto': (context) => Kanto(),
       },
     );
   }
@@ -26,8 +24,8 @@ class InitApp extends StatelessWidget {
 /*
 
 ROUTES:
-  /splash         SplashScreen
- /pokedex   Main Page
- /pokemodel
-
+ /select   Select Page
+ /kanto    Kanto Dex
+ /johto    Johto Dex
+ /hoenn    Hoenn Dex
 */

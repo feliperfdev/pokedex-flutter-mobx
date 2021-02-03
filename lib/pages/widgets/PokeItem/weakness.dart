@@ -11,7 +11,7 @@ class Weakness extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    final double heightWeak = activePage ? (size.height / 16) : 10;
+    final double heightWeak = activePage ? (size.height / 8) : 10;
     return Align(
       alignment: Alignment.topLeft,
       child: AnimatedContainer(
@@ -20,7 +20,7 @@ class Weakness extends StatelessWidget {
         width: size.width / 1.2,
         child: GridView.builder(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              childAspectRatio: activePage ? 0.3 : 0.8,
+              childAspectRatio: activePage ? 0.4 : 0.8,
               crossAxisCount: 2,
             ),
             scrollDirection: Axis.horizontal,

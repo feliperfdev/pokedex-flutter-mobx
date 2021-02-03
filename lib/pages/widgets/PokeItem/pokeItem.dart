@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex_flutter_mobx/constants/app_consts.dart';
-import 'package:pokedex_flutter_mobx/pages/home/widgets/PokeItem/types.dart';
-import '../../../../styles/textStyles.dart';
+import 'package:pokedex_flutter_mobx/styles/textStyles.dart';
 import 'opacityPokeball.dart';
 import 'picture.dart';
 import 'pokemonName.dart';
+import 'types.dart';
 import 'weakness.dart';
 
 class PokeItem extends StatelessWidget {

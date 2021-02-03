@@ -16,17 +16,17 @@ class PokeTypes extends StatelessWidget {
         height: size.height / 15,
         child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            physics: BouncingScrollPhysics(),
             itemCount: types.length,
-            itemBuilder: (context, index) {
+            itemBuilder: (_, index) {
               color = ConstsApp.getColorType(type: types[index]);
               return Card(
                 elevation: 1,
-                margin: EdgeInsets.all(8),
-                color: color.withAlpha(190).withOpacity(0.7),
+                margin: EdgeInsets.all(9),
+                color: color,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30)),
                 child: Container(
+                  width: 90,
                   padding: EdgeInsets.all(3),
                   child: Text(
                     types[index],
