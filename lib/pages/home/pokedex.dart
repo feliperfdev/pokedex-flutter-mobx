@@ -5,7 +5,7 @@ import 'package:pokedex_flutter_mobx/pages/home/widgets/appBar.dart';
 import 'package:pokedex_flutter_mobx/pages/home/widgets/darkPokeball.dart';
 import 'package:pokedex_flutter_mobx/stores/pokeapi_store.dart';
 
-import 'widgets/pokeItem.dart';
+import 'widgets/PokeItem/pokeItem.dart';
 
 class Pokedex extends StatefulWidget {
   @override
