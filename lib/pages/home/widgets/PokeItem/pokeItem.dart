@@ -72,7 +72,7 @@ class PokeItem extends StatelessWidget {
                 ),
                 AnimatedContainer(
                   duration: Duration(milliseconds: 500),
-                  height: !activePage ? 0 : 170,
+                  height: !activePage ? 0 : 160,
                   child: Stack(
                     children: [
                       LowOpacityPokeball(),
@@ -94,8 +94,8 @@ class PokeItem extends StatelessWidget {
           ),
           Divider(thickness: 3),
           Container(
-            padding: EdgeInsets.all(10),
-            width: size.width / 1.5,
+            padding: EdgeInsets.all(9),
+            width: size.width / 1.6,
             decoration: BoxDecoration(
               color: color,
               borderRadius: BorderRadius.circular(30),
@@ -114,6 +114,7 @@ class PokeItem extends StatelessWidget {
             child: Column(
               children: [
                 Text('Weakness', style: pokemonTypeInfo),
+                SizedBox(height: 8),
                 Weakness(
                   activePage: activePage,
                   types: weak,

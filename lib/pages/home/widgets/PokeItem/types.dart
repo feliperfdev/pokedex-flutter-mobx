@@ -14,7 +14,6 @@ class PokeTypes extends StatelessWidget {
       alignment: Alignment.topLeft,
       child: Container(
         height: size.height / 15,
-        width: size.width / 1.2,
         child: ListView.builder(
             scrollDirection: Axis.horizontal,
             physics: BouncingScrollPhysics(),
@@ -28,7 +27,7 @@ class PokeTypes extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30)),
                 child: Container(
-                  padding: EdgeInsets.all(4),
+                  padding: EdgeInsets.all(3),
                   child: Text(
                     types[index],
                     style: typeName,
