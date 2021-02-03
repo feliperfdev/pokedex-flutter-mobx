@@ -17,11 +17,14 @@ class _KantoState extends State<Kanto> {
   int _currentPage = 0;
   PageController _pageController = PageController(viewportFraction: 0.8);
 
+  List<PokeAPI> kantodex = [];
   @override
   void initState() {
     super.initState();
     pokeApiStore = PokeApiStore();
-    pokeApiStore.fetchPokeAPI();
+    print('Tentando dar fetch na API de Johto...');
+    pokeApiStore.fetchPokeAPIKanto();
+    print('Ótimo!! Conseguimos dar o fetch!');
     _pageController.addListener(() {
       int next = _pageController.page.round();
       if (_currentPage != next) {
@@ -48,30 +51,27 @@ class _KantoState extends State<Kanto> {
                   Expanded(
                     child: Container(
                       child: Observer(
-                        name: 'PokeAPI',
+                        name: 'PokeAPIJohto',
                         builder: (_) {
-                          PokeAPI _pokeAPI = pokeApiStore.pokeAPI;
-
-                          return (_pokeAPI != null)
+                          List<PokeAPI> _kantoAPI = pokeApiStore.apiKanto;
+                          kantodex = _kantoAPI;
+                          return (_kantoAPI != null)
                               ? PageView.builder(
                                   controller: _pageController,
-                                  itemCount: _pokeAPI.pokemon.length,
+                                  itemCount: _kantoAPI.length,
                                   itemBuilder: (_, index) {
-                                    Pokemon pokemon =
-                                        pokeApiStore.getPokemon(index: index);
                                     bool actualPage = (index == _currentPage);
+                                    int id = _kantoAPI[index].dexNr;
+                                    String numero = id.toString();
                                     return PokeItem(
+                                      nome: _kantoAPI[index].names.english,
                                       image: pokeApiStore.getImage(
-                                          numero: pokemon.num),
-                                      nome: pokemon.name,
-                                      color: pokeApiStore.corPokemon,
-                                      types: pokemon.type,
-                                      index: pokemon.id,
-                                      pokeNum: pokemon.num,
+                                        numero: numero,
+                                      ),
                                       activePage: actualPage,
-                                      height: pokemon.height,
-                                      weight: pokemon.weight,
-                                      weak: pokemon.weaknesses,
+                                      color: pokeApiStore.corPokemon,
+                                      pokeNum: numero,
+                                      types: listTypes(index),
                                     );
                                   },
                                 )
@@ -89,5 +89,13 @@ class _KantoState extends State<Kanto> {
         ),
       ),
     );
+  }
+
+  List<String> listTypes(int index) {
+    List<String> types = [];
+    for (var i = 0; i < 1; i++) {
+      types.add(kantodex[index].primaryType.names.english);
+    }
+    return types;
   }
 }

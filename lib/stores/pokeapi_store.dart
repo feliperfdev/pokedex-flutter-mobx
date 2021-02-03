@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pokedex_flutter_mobx/constants/api_consts.dart';
+import 'package:pokedex_flutter_mobx/models/pokeApiHoenn.dart';
 import 'package:pokedex_flutter_mobx/models/pokeApiJohto.dart';
 import 'package:pokedex_flutter_mobx/models/pokeapi.dart';
 part 'pokeapi_store.g.dart';
@@ -16,10 +17,10 @@ abstract class _PokeApiStoreBase with Store {
 
   // Kanto ==========================
   @observable
-  PokeAPI _pokeAPI;
+  List<PokeAPI> _apiKanto;
 
   @computed
-  PokeAPI get pokeAPI => _pokeAPI;
+  List<PokeAPI> get apiKanto => _apiKanto;
 // =====================================
 
 // Johto =====================================
@@ -30,21 +31,16 @@ abstract class _PokeApiStoreBase with Store {
   List<PokeAPIJohto> get apiJohto => _apiJohto;
 // ==========================================
 
+// Hoenn =====================================
+  @observable
+  List<PokeAPIHoenn> _apiHoenn;
+
+  @computed
+  List<PokeAPIHoenn> get apiHoenn => _apiHoenn;
+// ==========================================
+
   @observable
   dynamic corPokemon;
-
-  @action
-  fetchPokeAPI() {
-    _pokeAPI = null;
-    loadPokeAPIKanto().then((pokelist) {
-      _pokeAPI = pokelist;
-    });
-  }
-
-  @action
-  getPokemon({int index}) {
-    return _pokeAPI.pokemon[index];
-  }
 
   @action
   Widget getImage({String numero}) {
@@ -52,21 +48,46 @@ abstract class _PokeApiStoreBase with Store {
       placeholder: (context, url) => new Container(
         color: Colors.transparent,
       ),
-      imageUrl:
-          'https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/$numero.png',
+      imageUrl: numero.length < 2
+          ? 'https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/00$numero.png'
+          : numero.length < 3
+              ? 'https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/0$numero.png'
+              : 'https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/$numero.png',
     );
   }
 
-  Future<PokeAPI> loadPokeAPIKanto() async {
+////////////////////// KANTO ////////////////////////
+  @action
+  fetchPokeAPIKanto() {
+    _apiKanto = null;
+    loadPokeAPIKanto().then((value) {
+      _apiKanto = value;
+    });
+  }
+
+  Future<List<PokeAPI>> loadPokeAPIKanto() async {
+    final response = await dio.get(ConstsAPI.pokeAPIKanto);
+    final list = response.data as List;
+
+    List<PokeAPI> _kantodex;
+    _kantodex = [];
     try {
-      final response = await dio.get(ConstsAPI.pokeAPIKanto);
-      var decodedJson = jsonDecode(response.data);
-      return PokeAPI.fromJson(decodedJson);
+      // if (response.statusCode == 200) print(response.statusCode.toString());
+      for (var poke in list) {
+        final pokemon = PokeAPI.fromJson(poke);
+        _kantodex.add(pokemon);
+      }
+      print('Sucesso! Adicionou na lista!');
+      print('Foram adicionados ${_kantodex.length} pokémon na lista!');
     } catch (e) {
-      print('Erro ao carregar API');
+      print('Response API error');
       return null;
     }
+    print('Sucesso! Retornou!');
+    return _kantodex;
   }
+
+////////////////////////////////////////////////////////////////////
 
 ////////////////////// JOHTO ////////////////////////
   @action
@@ -97,6 +118,39 @@ abstract class _PokeApiStoreBase with Store {
     }
     print('Sucesso! Retornou!');
     return _johtodex;
+  }
+
+////////////////////////////////////////////////////////////////////
+
+////////////////////// HOENN ////////////////////////
+  @action
+  fetchPokeAPIHoenn() {
+    _apiHoenn = null;
+    loadPokeAPIHoenn().then((value) {
+      _apiHoenn = value;
+    });
+  }
+
+  Future<List<PokeAPIHoenn>> loadPokeAPIHoenn() async {
+    final response = await dio.get(ConstsAPI.pokeAPIHoeen);
+    final list = response.data as List;
+
+    List<PokeAPIHoenn> _hoenndex;
+    _hoenndex = [];
+    try {
+      // if (response.statusCode == 200) print(response.statusCode.toString());
+      for (var poke in list) {
+        final pokemon = PokeAPIHoenn.fromJson(poke);
+        _hoenndex.add(pokemon);
+      }
+      print('Sucesso! Adicionou na lista!');
+      print('Foram adicionados ${_hoenndex.length} pokémon na lista!');
+    } catch (e) {
+      print('Response API error');
+      return null;
+    }
+    print('Sucesso! Retornou!');
+    return _hoenndex;
   }
 }
 ////////////////////////////////////////////////////////////////////

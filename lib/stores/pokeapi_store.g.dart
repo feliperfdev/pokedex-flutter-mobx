@@ -9,12 +9,12 @@ part of 'pokeapi_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$PokeApiStore on _PokeApiStoreBase, Store {
-  Computed<PokeAPI> _$pokeAPIComputed;
+  Computed<List<PokeAPI>> _$apiKantoComputed;
 
   @override
-  PokeAPI get pokeAPI =>
-      (_$pokeAPIComputed ??= Computed<PokeAPI>(() => super.pokeAPI,
-              name: '_PokeApiStoreBase.pokeAPI'))
+  List<PokeAPI> get apiKanto =>
+      (_$apiKantoComputed ??= Computed<List<PokeAPI>>(() => super.apiKanto,
+              name: '_PokeApiStoreBase.apiKanto'))
           .value;
   Computed<List<PokeAPIJohto>> _$apiJohtoComputed;
 
@@ -23,19 +23,26 @@ mixin _$PokeApiStore on _PokeApiStoreBase, Store {
       (_$apiJohtoComputed ??= Computed<List<PokeAPIJohto>>(() => super.apiJohto,
               name: '_PokeApiStoreBase.apiJohto'))
           .value;
-
-  final _$_pokeAPIAtom = Atom(name: '_PokeApiStoreBase._pokeAPI');
+  Computed<List<PokeAPIHoenn>> _$apiHoennComputed;
 
   @override
-  PokeAPI get _pokeAPI {
-    _$_pokeAPIAtom.reportRead();
-    return super._pokeAPI;
+  List<PokeAPIHoenn> get apiHoenn =>
+      (_$apiHoennComputed ??= Computed<List<PokeAPIHoenn>>(() => super.apiHoenn,
+              name: '_PokeApiStoreBase.apiHoenn'))
+          .value;
+
+  final _$_apiKantoAtom = Atom(name: '_PokeApiStoreBase._apiKanto');
+
+  @override
+  List<PokeAPI> get _apiKanto {
+    _$_apiKantoAtom.reportRead();
+    return super._apiKanto;
   }
 
   @override
-  set _pokeAPI(PokeAPI value) {
-    _$_pokeAPIAtom.reportWrite(value, super._pokeAPI, () {
-      super._pokeAPI = value;
+  set _apiKanto(List<PokeAPI> value) {
+    _$_apiKantoAtom.reportWrite(value, super._apiKanto, () {
+      super._apiKanto = value;
     });
   }
 
@@ -51,6 +58,21 @@ mixin _$PokeApiStore on _PokeApiStoreBase, Store {
   set _apiJohto(List<PokeAPIJohto> value) {
     _$_apiJohtoAtom.reportWrite(value, super._apiJohto, () {
       super._apiJohto = value;
+    });
+  }
+
+  final _$_apiHoennAtom = Atom(name: '_PokeApiStoreBase._apiHoenn');
+
+  @override
+  List<PokeAPIHoenn> get _apiHoenn {
+    _$_apiHoennAtom.reportRead();
+    return super._apiHoenn;
+  }
+
+  @override
+  set _apiHoenn(List<PokeAPIHoenn> value) {
+    _$_apiHoennAtom.reportWrite(value, super._apiHoenn, () {
+      super._apiHoenn = value;
     });
   }
 
@@ -73,33 +95,22 @@ mixin _$PokeApiStore on _PokeApiStoreBase, Store {
       ActionController(name: '_PokeApiStoreBase');
 
   @override
-  dynamic fetchPokeAPI() {
-    final _$actionInfo = _$_PokeApiStoreBaseActionController.startAction(
-        name: '_PokeApiStoreBase.fetchPokeAPI');
-    try {
-      return super.fetchPokeAPI();
-    } finally {
-      _$_PokeApiStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  dynamic getPokemon({int index}) {
-    final _$actionInfo = _$_PokeApiStoreBaseActionController.startAction(
-        name: '_PokeApiStoreBase.getPokemon');
-    try {
-      return super.getPokemon(index: index);
-    } finally {
-      _$_PokeApiStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   Widget getImage({String numero}) {
     final _$actionInfo = _$_PokeApiStoreBaseActionController.startAction(
         name: '_PokeApiStoreBase.getImage');
     try {
       return super.getImage(numero: numero);
+    } finally {
+      _$_PokeApiStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic fetchPokeAPIKanto() {
+    final _$actionInfo = _$_PokeApiStoreBaseActionController.startAction(
+        name: '_PokeApiStoreBase.fetchPokeAPIKanto');
+    try {
+      return super.fetchPokeAPIKanto();
     } finally {
       _$_PokeApiStoreBaseActionController.endAction(_$actionInfo);
     }
@@ -117,11 +128,23 @@ mixin _$PokeApiStore on _PokeApiStoreBase, Store {
   }
 
   @override
+  dynamic fetchPokeAPIHoenn() {
+    final _$actionInfo = _$_PokeApiStoreBaseActionController.startAction(
+        name: '_PokeApiStoreBase.fetchPokeAPIHoenn');
+    try {
+      return super.fetchPokeAPIHoenn();
+    } finally {
+      _$_PokeApiStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 corPokemon: ${corPokemon},
-pokeAPI: ${pokeAPI},
-apiJohto: ${apiJohto}
+apiKanto: ${apiKanto},
+apiJohto: ${apiJohto},
+apiHoenn: ${apiHoenn}
     ''';
   }
 }

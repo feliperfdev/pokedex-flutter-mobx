@@ -1,11 +1,11 @@
-class PokeAPI {
+class PokeAPIHoenn {
   String id;
   int dexNr;
   Names names;
   Stats stats;
   PrimaryType primaryType;
 
-  PokeAPI({
+  PokeAPIHoenn({
     this.id,
     this.dexNr,
     this.names,
@@ -13,7 +13,7 @@ class PokeAPI {
     this.primaryType,
   });
 
-  PokeAPI.fromJson(Map<String, dynamic> json) {
+  PokeAPIHoenn.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     dexNr = json['dexNr'];
     names = json['names'] != null ? new Names.fromJson(json['names']) : null;

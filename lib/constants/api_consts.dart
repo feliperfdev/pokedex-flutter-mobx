@@ -1,6 +1,6 @@
 class ConstsAPI {
   static String pokeAPIKanto =
-      'https://raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/pokedex.json';
+      'https://pokemon-go-lingen.github.io/pokemon-go-api/api/pokedex/generation/1.json';
   static String pokeAPIJohto =
       'https://pokemon-go-lingen.github.io/pokemon-go-api/api/pokedex/generation/2.json';
   static String pokeAPIHoeen =

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex_flutter_mobx/pages/regions/hoenn.dart';
 import 'package:pokedex_flutter_mobx/pages/regions/johto.dart';
 import 'package:pokedex_flutter_mobx/pages/regions/kanto.dart';
 import 'package:pokedex_flutter_mobx/pages/selectPage/select.dart';
@@ -20,6 +21,7 @@ class InitApp extends StatelessWidget {
         '/select': (context) => SelectPage(),
         '/kanto': (context) => Kanto(),
         '/johto': (context) => Johto(),
+        '/hoenn': (context) => Hoenn(),
       },
     );
   }

@@ -13,13 +13,21 @@ class PokeAppBar extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Pokédex', style: pokedexTitle),
-          SizedBox(height: 10),
-          Text(
-              'The Pokédex is an electronic device designed to catalogue and provide'
-              'information regarding the\nvarious species of Pokémon featured in the Pokémon video game,'
-              'anime and manga series.',
-              style: pokedexDesc),
+          Row(
+            children: [
+              Text('Pokédex', style: pokedexTitle),
+              Spacer(),
+              IconButton(
+                hoverColor: Colors.red.withOpacity(0.6),
+                splashColor: Colors.red.withOpacity(0.6),
+                splashRadius: 20,
+                icon: Icon(Icons.arrow_back, size: 30),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          ),
         ],
       ),
     );

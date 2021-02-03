@@ -5,7 +5,6 @@ import 'opacityPokeball.dart';
 import 'picture.dart';
 import 'pokemonName.dart';
 import 'types.dart';
-import 'weakness.dart';
 
 class PokeItem extends StatelessWidget {
   final String nome;
@@ -67,7 +66,11 @@ class PokeItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
-                  '#$pokeNum',
+                  pokeNum.length < 2
+                      ? '#00$pokeNum'
+                      : pokeNum.length < 3
+                          ? '#0$pokeNum'
+                          : '#$pokeNum',
                   style: pokemonName,
                 ),
                 AnimatedContainer(
@@ -93,32 +96,12 @@ class PokeItem extends StatelessWidget {
             types: types,
           ),
           Divider(thickness: 3),
-          Container(
-            padding: EdgeInsets.all(9),
-            width: size.width / 1.6,
-            decoration: BoxDecoration(
-              color: color,
-              borderRadius: BorderRadius.circular(30),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Text('Height: ${height}', style: pokemonBodyInfo),
-                Text('Weight: ${weight}', style: pokemonBodyInfo),
-              ],
-            ),
-          ),
-          Divider(thickness: 3),
           SizedBox(height: 10),
           Container(
             child: Column(
               children: [
-                Text('Weakness', style: pokemonTypeInfo),
+                Text('STATS', style: pokemonTypeInfo),
                 SizedBox(height: 8),
-                Weakness(
-                  activePage: activePage,
-                  types: weak == null ? [] : weak,
-                ),
               ],
             ),
           ),

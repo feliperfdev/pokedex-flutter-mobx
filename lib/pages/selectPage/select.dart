@@ -14,18 +14,20 @@ class SelectPage extends StatelessWidget {
             RegionButton(
               name: 'Kanto',
               onTap: () {
-                Navigator.pushReplacementNamed(context, '/kanto');
+                Navigator.pushNamed(context, '/kanto');
               },
             ),
             RegionButton(
               name: 'Johto',
               onTap: () {
-                Navigator.pushReplacementNamed(context, '/johto');
+                Navigator.pushNamed(context, '/johto');
               },
             ),
             RegionButton(
               name: 'Hoenn',
-              onTap: null,
+              onTap: () {
+                Navigator.pushNamed(context, '/hoenn');
+              },
             ),
           ],
         ),

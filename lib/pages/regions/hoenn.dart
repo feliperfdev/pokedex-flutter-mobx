@@ -1,29 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:pokedex_flutter_mobx/models/pokeApiHoenn.dart';
 import 'package:pokedex_flutter_mobx/models/pokeApiJohto.dart';
 import 'package:pokedex_flutter_mobx/pages/widgets/PokeItem/pokeItem.dart';
 import 'package:pokedex_flutter_mobx/pages/widgets/appBar.dart';
 import 'package:pokedex_flutter_mobx/pages/widgets/darkPokeball.dart';
 import 'package:pokedex_flutter_mobx/stores/pokeapi_store.dart';
 
-class Johto extends StatefulWidget {
+class Hoenn extends StatefulWidget {
   @override
-  _JohtoState createState() => _JohtoState();
+  _HoennState createState() => _HoennState();
 }
 
-class _JohtoState extends State<Johto> {
+class _HoennState extends State<Hoenn> {
   PokeApiStore pokeApiStore;
 
   int _currentPage = 0;
   PageController _pageController = PageController(viewportFraction: 0.8);
 
-  List<PokeAPIJohto> johtodex = [];
+  List<PokeAPIHoenn> hoenndex = [];
   @override
   void initState() {
     super.initState();
     pokeApiStore = PokeApiStore();
     print('Tentando dar fetch na API de Johto...');
-    pokeApiStore.fetchPokeAPIJohto();
+    pokeApiStore.fetchPokeAPIHoenn();
     print('Ótimo!! Conseguimos dar o fetch!');
     _pageController.addListener(() {
       int next = _pageController.page.round();
@@ -53,18 +54,18 @@ class _JohtoState extends State<Johto> {
                       child: Observer(
                         name: 'PokeAPIJohto',
                         builder: (_) {
-                          List<PokeAPIJohto> _johtoAPI = pokeApiStore.apiJohto;
-                          johtodex = _johtoAPI;
-                          return (_johtoAPI != null)
+                          List<PokeAPIHoenn> _hoennAPI = pokeApiStore.apiHoenn;
+                          hoenndex = _hoennAPI;
+                          return (_hoennAPI != null)
                               ? PageView.builder(
                                   controller: _pageController,
-                                  itemCount: _johtoAPI.length,
+                                  itemCount: _hoennAPI.length,
                                   itemBuilder: (_, index) {
                                     bool actualPage = (index == _currentPage);
-                                    int id = _johtoAPI[index].dexNr;
+                                    int id = _hoennAPI[index].dexNr;
                                     String numero = id.toString();
                                     return PokeItem(
-                                      nome: _johtoAPI[index].names.english,
+                                      nome: _hoennAPI[index].names.english,
                                       image: pokeApiStore.getImage(
                                         numero: numero,
                                       ),
@@ -94,7 +95,7 @@ class _JohtoState extends State<Johto> {
   List<String> listTypes(int index) {
     List<String> types = [];
     for (var i = 0; i < 1; i++) {
-      types.add(johtodex[index].primaryType.names.english);
+      types.add(hoenndex[index].primaryType.names.english);
     }
     return types;
   }
