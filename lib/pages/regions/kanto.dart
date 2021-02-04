@@ -53,7 +53,8 @@ class _KantoState extends State<Kanto> {
                       child: Observer(
                         name: 'PokeAPIJohto',
                         builder: (_) {
-                          List<PokeAPI> _kantoAPI = pokeApiStore.apiKanto;
+                          List<PokeAPI> _kantoAPI = [];
+                          _kantoAPI = pokeApiStore.apiKanto;
                           kantodex = _kantoAPI;
                           return (_kantoAPI != null)
                               ? PageView.builder(
@@ -98,9 +99,10 @@ class _KantoState extends State<Kanto> {
 
   List<String> listTypes(int index) {
     List<String> types = [];
-    for (var i = 0; i < 1; i++) {
-      types.add(kantodex[index].primaryType.names.english);
-    }
+    types.add(kantodex[index].primaryType.names.english);
+    kantodex[index].secondaryType != null
+        ? types.add(kantodex[index].secondaryType.names.english)
+        : '';
     return types;
   }
 }

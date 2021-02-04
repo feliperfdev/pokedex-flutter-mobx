@@ -54,7 +54,8 @@ class _JohtoState extends State<Johto> {
                       child: Observer(
                         name: 'PokeAPIJohto',
                         builder: (_) {
-                          List<PokeAPIJohto> _johtoAPI = johtoApiStore.apiJohto;
+                          List<PokeAPIJohto> _johtoAPI = [];
+                          _johtoAPI = johtoApiStore.apiJohto;
                           johtodex = _johtoAPI;
                           return (_johtoAPI != null)
                               ? PageView.builder(
@@ -99,9 +100,10 @@ class _JohtoState extends State<Johto> {
 
   List<String> listTypes(int index) {
     List<String> types = [];
-    for (var i = 0; i < 1; i++) {
-      types.add(johtodex[index].primaryType.names.english);
-    }
+    types.add(johtodex[index].primaryType.names.english);
+    johtodex[index].secondaryType != null
+        ? types.add(johtodex[index].secondaryType.names.english)
+        : '';
     return types;
   }
 }

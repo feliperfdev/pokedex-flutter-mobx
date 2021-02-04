@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:pokedex_flutter_mobx/styles/textStyles.dart';
 
 class PokeAppBar extends StatelessWidget {
+  final int totalPokemon;
+
+  PokeAppBar({this.totalPokemon});
+
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
-    // double screenWidth = screenSize.width;
     double screenHeight = screenSize.height;
     return Container(
       padding: EdgeInsets.only(left: 20, top: 15),
@@ -24,6 +27,7 @@ class PokeAppBar extends StatelessWidget {
                 icon: Icon(Icons.arrow_back, size: 30),
                 onPressed: () {
                   Navigator.of(context).pop();
+                  print('Ajustando as listas...');
                 },
               ),
             ],

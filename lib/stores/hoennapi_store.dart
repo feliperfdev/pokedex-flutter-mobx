@@ -35,7 +35,6 @@ abstract class _HoennApiStoreBase with Store {
     List<PokeAPIHoenn> _hoenndex;
     _hoenndex = [];
     try {
-      // if (response.statusCode == 200) print(response.statusCode.toString());
       for (var poke in list) {
         final pokemon = PokeAPIHoenn.fromJson(poke);
         _hoenndex.add(pokemon);

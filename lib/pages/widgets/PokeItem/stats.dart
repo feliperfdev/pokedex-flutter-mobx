@@ -13,31 +13,37 @@ class Stats extends StatelessWidget {
       child: Column(
         children: [
           Text('STATS', style: pokemonTypeInfo),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              ListTile(
-                title: Text('Attack:', style: pokemonStatsInfo),
-                subtitle: Text(
-                  stats['atk'].toString(),
-                  style: pokemonStatsValuesInfo,
+          Container(
+            margin: EdgeInsets.only(top: 10),
+            padding: EdgeInsets.only(left: 20, top: 10),
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Text('Attack:', style: pokemonStatsInfo),
+                    Text(stats['atk'].toString(),
+                        style: pokemonStatsValuesInfo),
+                  ],
                 ),
-              ),
-              ListTile(
-                title: Text('Deffense:', style: pokemonStatsInfo),
-                subtitle: Text(
-                  stats['def'].toString(),
-                  style: pokemonStatsValuesInfo,
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 5),
+                  child: Row(
+                    children: [
+                      Text('Deffense:', style: pokemonStatsInfo),
+                      Text(stats['def'].toString(),
+                          style: pokemonStatsValuesInfo),
+                    ],
+                  ),
                 ),
-              ),
-              ListTile(
-                title: Text('Stamina:', style: pokemonStatsInfo),
-                subtitle: Text(
-                  stats['sta'].toString(),
-                  style: pokemonStatsValuesInfo,
+                Row(
+                  children: [
+                    Text('Stamina:', style: pokemonStatsInfo),
+                    Text(stats['sta'].toString(),
+                        style: pokemonStatsValuesInfo),
+                  ],
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ],
       ),

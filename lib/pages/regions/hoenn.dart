@@ -55,7 +55,8 @@ class _HoennState extends State<Hoenn> {
                       child: Observer(
                         name: 'PokeAPIHoenn',
                         builder: (_) {
-                          List<PokeAPIHoenn> _hoennAPI = hoennApiStore.apiHoenn;
+                          List<PokeAPIHoenn> _hoennAPI = [];
+                          _hoennAPI = hoennApiStore.apiHoenn;
                           hoenndex = _hoennAPI;
                           return (_hoennAPI != null)
                               ? PageView.builder(
@@ -100,9 +101,10 @@ class _HoennState extends State<Hoenn> {
 
   List<String> listTypes(int index) {
     List<String> types = [];
-    for (var i = 0; i < 1; i++) {
-      types.add(hoenndex[index].primaryType.names.english);
-    }
+    types.add(hoenndex[index].primaryType.names.english);
+    hoenndex[index].secondaryType != null
+        ? types.add(hoenndex[index].secondaryType.names.english)
+        : '';
     return types;
   }
 }
