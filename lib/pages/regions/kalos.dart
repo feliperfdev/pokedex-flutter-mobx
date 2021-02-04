@@ -1,29 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:pokedex_flutter_mobx/models/pokeApiJohto.dart';
+import 'package:pokedex_flutter_mobx/models/pokeApiKalos.dart';
 import 'package:pokedex_flutter_mobx/pages/widgets/PokeItem/pokeItem.dart';
 import 'package:pokedex_flutter_mobx/pages/widgets/appBar.dart';
 import 'package:pokedex_flutter_mobx/pages/widgets/darkPokeball.dart';
-import 'package:pokedex_flutter_mobx/stores/johtoapi_store.dart';
+import 'package:pokedex_flutter_mobx/stores/kalosapi_store.dart';
 
-class Johto extends StatefulWidget {
+class Kalos extends StatefulWidget {
   @override
-  _JohtoState createState() => _JohtoState();
+  _KalosState createState() => _KalosState();
 }
 
-class _JohtoState extends State<Johto> {
-  JohtoApiStore johtoApiStore;
+class _KalosState extends State<Kalos> {
+  KalosApiStore kalosApiStore;
 
   int _currentPage = 0;
   PageController _pageController = PageController(viewportFraction: 0.8);
 
-  List<PokeAPIJohto> johtodex = [];
+  List<PokeAPIKalos> kalosdex = [];
   @override
   void initState() {
     super.initState();
-    johtoApiStore = JohtoApiStore();
-    print('Tentando dar fetch na API de Johto...');
-    johtoApiStore.fetchPokeAPIJohto();
+    kalosApiStore = KalosApiStore();
+    print('Tentando dar fetch na API de Kalos...');
+    kalosApiStore.fetchPokeAPIKalos();
     print('Ótimo!! Conseguimos dar o fetch!');
     _pageController.addListener(() {
       int next = _pageController.page.round();
@@ -51,32 +51,32 @@ class _JohtoState extends State<Johto> {
                   Expanded(
                     child: Container(
                       child: Observer(
-                        name: 'PokeAPIJohto',
+                        name: 'PokeAPIKalos',
                         builder: (_) {
-                          List<PokeAPIJohto> _johtoAPI = [];
-                          _johtoAPI = johtoApiStore.apiJohto;
-                          johtodex = _johtoAPI;
-                          return (_johtoAPI != null)
+                          List<PokeAPIKalos> _kalosAPI = [];
+                          _kalosAPI = kalosApiStore.apiKalos;
+                          kalosdex = _kalosAPI;
+                          return (_kalosAPI != null)
                               ? PageView.builder(
                                   controller: _pageController,
-                                  itemCount: _johtoAPI.length,
+                                  itemCount: _kalosAPI.length,
                                   itemBuilder: (_, index) {
                                     bool actualPage = (index == _currentPage);
-                                    int id = _johtoAPI[index].dexNr;
+                                    int id = _kalosAPI[index].dexNr;
                                     String numero = id.toString();
                                     return PokeItem(
-                                      nome: _johtoAPI[index].names.english,
-                                      image: johtoApiStore.getImage(
+                                      nome: _kalosAPI[index].names.english,
+                                      image: kalosApiStore.getImage(
                                         numero: numero,
                                       ),
                                       activePage: actualPage,
-                                      color: johtoApiStore.corPokemon,
+                                      color: kalosApiStore.corPokemon,
                                       pokeNum: numero,
                                       types: listTypes(index),
                                       stats: {
-                                        'atk': _johtoAPI[index].stats.attack,
-                                        'def': _johtoAPI[index].stats.defense,
-                                        'sta': _johtoAPI[index].stats.stamina,
+                                        'atk': _kalosAPI[index].stats.attack,
+                                        'def': _kalosAPI[index].stats.defense,
+                                        'sta': _kalosAPI[index].stats.stamina,
                                       },
                                     );
                                   },
@@ -99,9 +99,9 @@ class _JohtoState extends State<Johto> {
 
   List<String> listTypes(int index) {
     List<String> types = [];
-    types.add(johtodex[index].primaryType.names.english);
-    johtodex[index].secondaryType != null
-        ? types.add(johtodex[index].secondaryType.names.english)
+    types.add(kalosdex[index].primaryType.names.english);
+    kalosdex[index].secondaryType != null
+        ? types.add(kalosdex[index].secondaryType.names.english)
         : '';
     return types;
   }

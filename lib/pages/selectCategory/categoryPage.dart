@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:pokedex_flutter_mobx/styles/themeScheme.dart';
 
-class SelectPage extends StatelessWidget {
+class SelectCategory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -11,22 +12,16 @@ class SelectPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            RegionButton(
-              name: 'Kanto',
+            CategoryButton(
+              name: 'Regions',
               onTap: () {
-                Navigator.pushNamed(context, '/kanto');
+                Navigator.pushNamed(context, '/regions');
               },
             ),
-            RegionButton(
-              name: 'Johto',
+            CategoryButton(
+              name: 'Megas',
               onTap: () {
-                Navigator.pushNamed(context, '/johto');
-              },
-            ),
-            RegionButton(
-              name: 'Hoenn',
-              onTap: () {
-                Navigator.pushNamed(context, '/hoenn');
+                Navigator.pushNamed(context, '/megas');
               },
             ),
           ],
@@ -36,11 +31,11 @@ class SelectPage extends StatelessWidget {
   }
 }
 
-class RegionButton extends StatelessWidget {
+class CategoryButton extends StatelessWidget {
   final String name;
   final Function onTap;
 
-  const RegionButton({Key key, this.name, this.onTap}) : super(key: key);
+  const CategoryButton({Key key, this.name, this.onTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -63,9 +58,9 @@ class RegionButton extends StatelessWidget {
             Spacer(),
             Text(
               name,
-              style: TextStyle(
+              style: GoogleFonts.pressStart2p(
                 color: backgroundWhite,
-                fontSize: 22,
+                fontSize: 18,
                 decoration: TextDecoration.none,
               ),
             ),

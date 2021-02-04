@@ -1,29 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:pokedex_flutter_mobx/models/pokeApiJohto.dart';
+import 'package:pokedex_flutter_mobx/models/megasApi.dart';
 import 'package:pokedex_flutter_mobx/pages/widgets/PokeItem/pokeItem.dart';
 import 'package:pokedex_flutter_mobx/pages/widgets/appBar.dart';
 import 'package:pokedex_flutter_mobx/pages/widgets/darkPokeball.dart';
-import 'package:pokedex_flutter_mobx/stores/johtoapi_store.dart';
+import 'package:pokedex_flutter_mobx/stores/apiMega_store.dart';
 
-class Johto extends StatefulWidget {
+class Mega extends StatefulWidget {
   @override
-  _JohtoState createState() => _JohtoState();
+  _MegaState createState() => _MegaState();
 }
 
-class _JohtoState extends State<Johto> {
-  JohtoApiStore johtoApiStore;
+class _MegaState extends State<Mega> {
+  MegaApiStore megaApiStore;
 
   int _currentPage = 0;
   PageController _pageController = PageController(viewportFraction: 0.8);
 
-  List<PokeAPIJohto> johtodex = [];
+  List<PokeMegaAPI> megadex = [];
   @override
   void initState() {
     super.initState();
-    johtoApiStore = JohtoApiStore();
-    print('Tentando dar fetch na API de Johto...');
-    johtoApiStore.fetchPokeAPIJohto();
+    megaApiStore = MegaApiStore();
+    print('Tentando dar fetch na API de Mega Evoluções...');
+    megaApiStore.fetchPokeMegaAPI();
     print('Ótimo!! Conseguimos dar o fetch!');
     _pageController.addListener(() {
       int next = _pageController.page.round();
@@ -51,32 +51,33 @@ class _JohtoState extends State<Johto> {
                   Expanded(
                     child: Container(
                       child: Observer(
-                        name: 'PokeAPIJohto',
+                        name: 'PokeMegaAPI',
                         builder: (_) {
-                          List<PokeAPIJohto> _johtoAPI = [];
-                          _johtoAPI = johtoApiStore.apiJohto;
-                          johtodex = _johtoAPI;
-                          return (_johtoAPI != null)
+                          List<PokeMegaAPI> _megaAPI = [];
+                          _megaAPI = megaApiStore.apiMega;
+                          megadex = _megaAPI;
+                          return (_megaAPI != null)
                               ? PageView.builder(
                                   controller: _pageController,
-                                  itemCount: _johtoAPI.length,
+                                  itemCount: 4,
                                   itemBuilder: (_, index) {
                                     bool actualPage = (index == _currentPage);
-                                    int id = _johtoAPI[index].dexNr;
+                                    int id = _megaAPI[index].dexNr;
                                     String numero = id.toString();
                                     return PokeItem(
-                                      nome: _johtoAPI[index].names.english,
-                                      image: johtoApiStore.getImage(
+                                      nome: getMegas(index),
+                                      image: megaApiStore.getImage(
                                         numero: numero,
                                       ),
                                       activePage: actualPage,
-                                      color: johtoApiStore.corPokemon,
+                                      color: megaApiStore.corPokemon,
                                       pokeNum: numero,
                                       types: listTypes(index),
+                                      hasMega: _megaAPI[index].hasMegaEvolution,
                                       stats: {
-                                        'atk': _johtoAPI[index].stats.attack,
-                                        'def': _johtoAPI[index].stats.defense,
-                                        'sta': _johtoAPI[index].stats.stamina,
+                                        'atk': _megaAPI[index].stats.attack,
+                                        'def': _megaAPI[index].stats.defense,
+                                        'sta': _megaAPI[index].stats.stamina,
                                       },
                                     );
                                   },
@@ -99,10 +100,22 @@ class _JohtoState extends State<Johto> {
 
   List<String> listTypes(int index) {
     List<String> types = [];
-    types.add(johtodex[index].primaryType.names.english);
-    johtodex[index].secondaryType != null
-        ? types.add(johtodex[index].secondaryType.names.english)
+    types.add(megadex[index].primaryType.names.english);
+    megadex[index].secondaryType != null
+        ? types.add(megadex[index].secondaryType.names.english)
         : '';
     return types;
+  }
+
+  String getMegas(int index) {
+    List<String> megas = [];
+    if (megadex[index].hasMegaEvolution &&
+        megadex[index].megaEvolutions != null) {
+      megas.add(megadex[index]?.megaEvolutions?.vENUSAURMEGA?.names?.english);
+      megas.add(megadex[index]?.megaEvolutions?.charizardmegax?.names?.english);
+      megas.add(megadex[index]?.megaEvolutions?.charizardmegay?.names?.english);
+      megas.add(megadex[index]?.megaEvolutions?.blastoisemega?.names?.english);
+    }
+    return megas[index];
   }
 }

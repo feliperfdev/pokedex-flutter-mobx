@@ -1,29 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:pokedex_flutter_mobx/models/pokeApiJohto.dart';
+import 'package:pokedex_flutter_mobx/models/pokeApiSinnoh.dart';
 import 'package:pokedex_flutter_mobx/pages/widgets/PokeItem/pokeItem.dart';
 import 'package:pokedex_flutter_mobx/pages/widgets/appBar.dart';
 import 'package:pokedex_flutter_mobx/pages/widgets/darkPokeball.dart';
-import 'package:pokedex_flutter_mobx/stores/johtoapi_store.dart';
+import 'package:pokedex_flutter_mobx/stores/sinnohapi_store.dart';
 
-class Johto extends StatefulWidget {
+class Sinnoh extends StatefulWidget {
   @override
-  _JohtoState createState() => _JohtoState();
+  _SinnohState createState() => _SinnohState();
 }
 
-class _JohtoState extends State<Johto> {
-  JohtoApiStore johtoApiStore;
+class _SinnohState extends State<Sinnoh> {
+  SinnohApiStore sinnohApiStore;
 
   int _currentPage = 0;
   PageController _pageController = PageController(viewportFraction: 0.8);
 
-  List<PokeAPIJohto> johtodex = [];
+  List<PokeAPISinnoh> sinnohdex = [];
   @override
   void initState() {
     super.initState();
-    johtoApiStore = JohtoApiStore();
-    print('Tentando dar fetch na API de Johto...');
-    johtoApiStore.fetchPokeAPIJohto();
+    sinnohApiStore = SinnohApiStore();
+    print('Tentando dar fetch na API de Sinnoh...');
+    sinnohApiStore.fetchPokeAPISinnoh();
     print('Ótimo!! Conseguimos dar o fetch!');
     _pageController.addListener(() {
       int next = _pageController.page.round();
@@ -51,32 +51,32 @@ class _JohtoState extends State<Johto> {
                   Expanded(
                     child: Container(
                       child: Observer(
-                        name: 'PokeAPIJohto',
+                        name: 'PokeAPISinnoh',
                         builder: (_) {
-                          List<PokeAPIJohto> _johtoAPI = [];
-                          _johtoAPI = johtoApiStore.apiJohto;
-                          johtodex = _johtoAPI;
-                          return (_johtoAPI != null)
+                          List<PokeAPISinnoh> _sinnohAPI = [];
+                          _sinnohAPI = sinnohApiStore.apiSinnoh;
+                          sinnohdex = _sinnohAPI;
+                          return (_sinnohAPI != null)
                               ? PageView.builder(
                                   controller: _pageController,
-                                  itemCount: _johtoAPI.length,
+                                  itemCount: _sinnohAPI.length,
                                   itemBuilder: (_, index) {
                                     bool actualPage = (index == _currentPage);
-                                    int id = _johtoAPI[index].dexNr;
+                                    int id = _sinnohAPI[index].dexNr;
                                     String numero = id.toString();
                                     return PokeItem(
-                                      nome: _johtoAPI[index].names.english,
-                                      image: johtoApiStore.getImage(
+                                      nome: _sinnohAPI[index].names.english,
+                                      image: sinnohApiStore.getImage(
                                         numero: numero,
                                       ),
                                       activePage: actualPage,
-                                      color: johtoApiStore.corPokemon,
+                                      color: sinnohApiStore.corPokemon,
                                       pokeNum: numero,
                                       types: listTypes(index),
                                       stats: {
-                                        'atk': _johtoAPI[index].stats.attack,
-                                        'def': _johtoAPI[index].stats.defense,
-                                        'sta': _johtoAPI[index].stats.stamina,
+                                        'atk': _sinnohAPI[index].stats.attack,
+                                        'def': _sinnohAPI[index].stats.defense,
+                                        'sta': _sinnohAPI[index].stats.stamina,
                                       },
                                     );
                                   },
@@ -99,9 +99,9 @@ class _JohtoState extends State<Johto> {
 
   List<String> listTypes(int index) {
     List<String> types = [];
-    types.add(johtodex[index].primaryType.names.english);
-    johtodex[index].secondaryType != null
-        ? types.add(johtodex[index].secondaryType.names.english)
+    types.add(sinnohdex[index].primaryType.names.english);
+    sinnohdex[index].secondaryType != null
+        ? types.add(sinnohdex[index].secondaryType.names.english)
         : '';
     return types;
   }

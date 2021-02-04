@@ -1,29 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:pokedex_flutter_mobx/models/pokeApiJohto.dart';
+import 'package:pokedex_flutter_mobx/models/pokeApiUnova.dart';
 import 'package:pokedex_flutter_mobx/pages/widgets/PokeItem/pokeItem.dart';
 import 'package:pokedex_flutter_mobx/pages/widgets/appBar.dart';
 import 'package:pokedex_flutter_mobx/pages/widgets/darkPokeball.dart';
-import 'package:pokedex_flutter_mobx/stores/johtoapi_store.dart';
+import 'package:pokedex_flutter_mobx/stores/unovaapi_store.dart';
 
-class Johto extends StatefulWidget {
+class Unova extends StatefulWidget {
   @override
-  _JohtoState createState() => _JohtoState();
+  _UnovaState createState() => _UnovaState();
 }
 
-class _JohtoState extends State<Johto> {
-  JohtoApiStore johtoApiStore;
+class _UnovaState extends State<Unova> {
+  UnovaApiStore unovaApiStore;
 
   int _currentPage = 0;
   PageController _pageController = PageController(viewportFraction: 0.8);
 
-  List<PokeAPIJohto> johtodex = [];
+  List<PokeAPIUnova> unovadex = [];
   @override
   void initState() {
     super.initState();
-    johtoApiStore = JohtoApiStore();
-    print('Tentando dar fetch na API de Johto...');
-    johtoApiStore.fetchPokeAPIJohto();
+    unovaApiStore = UnovaApiStore();
+    print('Tentando dar fetch na API de Unova...');
+    unovaApiStore.fetchPokeAPIUnova();
     print('Ótimo!! Conseguimos dar o fetch!');
     _pageController.addListener(() {
       int next = _pageController.page.round();
@@ -51,32 +51,32 @@ class _JohtoState extends State<Johto> {
                   Expanded(
                     child: Container(
                       child: Observer(
-                        name: 'PokeAPIJohto',
+                        name: 'PokeAPIUnova',
                         builder: (_) {
-                          List<PokeAPIJohto> _johtoAPI = [];
-                          _johtoAPI = johtoApiStore.apiJohto;
-                          johtodex = _johtoAPI;
-                          return (_johtoAPI != null)
+                          List<PokeAPIUnova> _unovaAPI = [];
+                          _unovaAPI = unovaApiStore.apiUnova;
+                          unovadex = _unovaAPI;
+                          return (_unovaAPI != null)
                               ? PageView.builder(
                                   controller: _pageController,
-                                  itemCount: _johtoAPI.length,
+                                  itemCount: _unovaAPI.length,
                                   itemBuilder: (_, index) {
                                     bool actualPage = (index == _currentPage);
-                                    int id = _johtoAPI[index].dexNr;
+                                    int id = _unovaAPI[index].dexNr;
                                     String numero = id.toString();
                                     return PokeItem(
-                                      nome: _johtoAPI[index].names.english,
-                                      image: johtoApiStore.getImage(
+                                      nome: _unovaAPI[index].names.english,
+                                      image: unovaApiStore.getImage(
                                         numero: numero,
                                       ),
                                       activePage: actualPage,
-                                      color: johtoApiStore.corPokemon,
+                                      color: unovaApiStore.corPokemon,
                                       pokeNum: numero,
                                       types: listTypes(index),
                                       stats: {
-                                        'atk': _johtoAPI[index].stats.attack,
-                                        'def': _johtoAPI[index].stats.defense,
-                                        'sta': _johtoAPI[index].stats.stamina,
+                                        'atk': _unovaAPI[index].stats.attack,
+                                        'def': _unovaAPI[index].stats.defense,
+                                        'sta': _unovaAPI[index].stats.stamina,
                                       },
                                     );
                                   },
@@ -99,9 +99,9 @@ class _JohtoState extends State<Johto> {
 
   List<String> listTypes(int index) {
     List<String> types = [];
-    types.add(johtodex[index].primaryType.names.english);
-    johtodex[index].secondaryType != null
-        ? types.add(johtodex[index].secondaryType.names.english)
+    types.add(unovadex[index].primaryType.names.english);
+    unovadex[index].secondaryType != null
+        ? types.add(unovadex[index].secondaryType.names.english)
         : '';
     return types;
   }

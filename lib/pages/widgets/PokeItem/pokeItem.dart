@@ -16,6 +16,7 @@ class PokeItem extends StatelessWidget {
   Map<String, dynamic> stats;
   final Widget image;
   final List<String> types;
+  final bool hasMega;
   PokeItem({
     this.image,
     this.color,
@@ -25,6 +26,7 @@ class PokeItem extends StatelessWidget {
     this.pokeNum,
     this.activePage,
     this.stats,
+    this.hasMega,
   });
 
   @override
@@ -82,9 +84,7 @@ class PokeItem extends StatelessWidget {
                     ],
                   ),
                 ),
-                PokemonName(
-                  nome: nome,
-                ),
+                PokemonName(nome: nome),
               ],
             ),
           ),
