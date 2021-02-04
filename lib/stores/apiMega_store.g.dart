@@ -62,11 +62,11 @@ mixin _$MegaApiStore on _MegaApiStoreBase, Store {
   }
 
   @override
-  Widget getImage({String numero}) {
+  Widget getImage({String numero, String name}) {
     final _$actionInfo = _$_MegaApiStoreBaseActionController.startAction(
         name: '_MegaApiStoreBase.getImage');
     try {
-      return super.getImage(numero: numero);
+      return super.getImage(numero: numero, name: name);
     } finally {
       _$_MegaApiStoreBaseActionController.endAction(_$actionInfo);
     }

@@ -6,12 +6,7 @@ class SelectRegion extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        actionsIconTheme: IconThemeData(color: Colors.black),
-        iconTheme: IconThemeData(color: Colors.black),
-      ),
+      appBar: AppBar(),
       body: Container(
         padding: EdgeInsets.all(20),
         color: backgroundWhite,

@@ -59,7 +59,7 @@ class _MegaState extends State<Mega> {
                           return (_megaAPI != null)
                               ? PageView.builder(
                                   controller: _pageController,
-                                  itemCount: 4,
+                                  itemCount: _megaAPI.length,
                                   itemBuilder: (_, index) {
                                     bool actualPage = (index == _currentPage);
                                     int id = _megaAPI[index].dexNr;
@@ -68,6 +68,7 @@ class _MegaState extends State<Mega> {
                                       nome: getMegas(index),
                                       image: megaApiStore.getImage(
                                         numero: numero,
+                                        name: getMegas(index),
                                       ),
                                       activePage: actualPage,
                                       color: megaApiStore.corPokemon,
@@ -109,12 +110,18 @@ class _MegaState extends State<Mega> {
 
   String getMegas(int index) {
     List<String> megas = [];
-    if (megadex[index].hasMegaEvolution &&
-        megadex[index].megaEvolutions != null) {
+    if (megadex[index].megaEvolutions != null) {
       megas.add(megadex[index]?.megaEvolutions?.vENUSAURMEGA?.names?.english);
       megas.add(megadex[index]?.megaEvolutions?.charizardmegax?.names?.english);
       megas.add(megadex[index]?.megaEvolutions?.charizardmegay?.names?.english);
       megas.add(megadex[index]?.megaEvolutions?.blastoisemega?.names?.english);
+      megas.add(megadex[index]?.megaEvolutions?.beedrillmega?.names?.english);
+      megas.add(megadex[index]?.megaEvolutions?.pidgeotmega?.names?.english);
+      megas.add(megadex[index]?.megaEvolutions?.gengarmega?.names?.english);
+      megas.add(megadex[index]?.megaEvolutions?.gyaradosmega?.names?.english);
+      megas.add(megadex[index]?.megaEvolutions?.ampharosmega?.names?.english);
+      megas.add(megadex[index]?.megaEvolutions?.houndoommega?.names?.english);
+      megas.add(megadex[index]?.megaEvolutions?.abomasnowmega?.names?.english);
     }
     return megas[index];
   }

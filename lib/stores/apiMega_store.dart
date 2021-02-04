@@ -54,15 +54,17 @@ abstract class _MegaApiStoreBase with Store {
   dynamic corPokemon;
 
   @action
-  Widget getImage({String numero}) {
+  Widget getImage({String numero, String name}) {
     return CachedNetworkImage(
         placeholder: (context, url) => new Container(
               color: Colors.transparent,
             ),
-        imageUrl: numero.length < 2
-            ? 'https://raw.githubusercontent.com/PokeMiners/pogo_assets/master/Images/Pokemon/pokemon_icon_00${numero}_51.png'
-            : numero.length < 3
-                ? 'https://raw.githubusercontent.com/PokeMiners/pogo_assets/master/Images/Pokemon/pokemon_icon_0${numero}_51.png'
-                : 'https://raw.githubusercontent.com/PokeMiners/pogo_assets/master/Images/Pokemon/pokemon_icon_${numero}_51.png');
+        imageUrl: (numero.length < 2 && name == 'Mega Charizard Y')
+            ? 'https://raw.githubusercontent.com/PokeMiners/pogo_assets/master/Images/Pokemon/pokemon_icon_00${numero}_52.png'
+            : (numero.length < 2 && name != 'Mega Charizard Y')
+                ? 'https://raw.githubusercontent.com/PokeMiners/pogo_assets/master/Images/Pokemon/pokemon_icon_00${numero}_51.png'
+                : numero.length < 3
+                    ? 'https://raw.githubusercontent.com/PokeMiners/pogo_assets/master/Images/Pokemon/pokemon_icon_0${numero}_51.png'
+                    : 'https://raw.githubusercontent.com/PokeMiners/pogo_assets/master/Images/Pokemon/pokemon_icon_${numero}_51.png');
   }
 }

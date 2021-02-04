@@ -5,24 +5,51 @@ import 'package:pokedex_flutter_mobx/styles/themeScheme.dart';
 class SelectCategory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(20),
-      color: backgroundWhite,
-      child: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+    return Scaffold(
+      body: SafeArea(
+        child: Stack(
           children: [
-            CategoryButton(
-              name: 'Regions',
-              onTap: () {
-                Navigator.pushNamed(context, '/regions');
-              },
+            Container(
+              decoration: BoxDecoration(
+                color: backgroundWhite,
+                image: DecorationImage(
+                  image: AssetImage('assets/images/w2.jpg'),
+                  fit: BoxFit.fill,
+                ),
+              ),
+              padding: EdgeInsets.all(20),
+              child: SafeArea(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CategoryButton(
+                      name: 'Regions',
+                      onTap: () {
+                        Navigator.pushNamed(context, '/regions');
+                      },
+                    ),
+                    CategoryButton(
+                      name: 'Megas',
+                      onTap: () {
+                        Navigator.pushNamed(context, '/megas');
+                      },
+                    ),
+                  ],
+                ),
+              ),
             ),
-            CategoryButton(
-              name: 'Megas',
-              onTap: () {
-                Navigator.pushNamed(context, '/megas');
-              },
+            Align(
+              alignment: Alignment.topRight,
+              child: IconButton(
+                hoverColor: Colors.red.withOpacity(0.6),
+                splashColor: Colors.red.withOpacity(0.6),
+                splashRadius: 24,
+                icon: Icon(Icons.help, color: Colors.red, size: 30),
+                onPressed: () {
+                  print('O botão foi apertado.');
+                  Navigator.pushNamed(context, '/info');
+                },
+              ),
             ),
           ],
         ),

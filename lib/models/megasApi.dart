@@ -1,3 +1,4 @@
+import 'package:pokedex_flutter_mobx/models/megapokemon.dart';
 import 'package:pokedex_flutter_mobx/models/pokeapi.dart';
 
 class PokeMegaAPI {
@@ -175,17 +176,33 @@ class SecondaryType {
   }
 }
 
+// MEGA EVOLUTIONS /////////////////////////////////////////////////
+
 class MegaEvolutions {
   VENUSAURMEGA vENUSAURMEGA;
   CHARIZARDMEGAX charizardmegax;
   CHARIZARDMEGAY charizardmegay;
   BLASTOISEMEGA blastoisemega;
+  BEEDRILLMEGA beedrillmega;
+  PIDGEOTMEGA pidgeotmega;
+  GENGARMEGA gengarmega;
+  GYARADOSMEGA gyaradosmega;
+  AMPHAROSMEGA ampharosmega;
+  HOUNDOOMMEGA houndoommega;
+  ABOMASNOWMEGA abomasnowmega;
 
   MegaEvolutions({
     this.vENUSAURMEGA,
     this.charizardmegax,
     this.charizardmegay,
     this.blastoisemega,
+    this.beedrillmega,
+    this.pidgeotmega,
+    this.gengarmega,
+    this.gyaradosmega,
+    this.ampharosmega,
+    this.houndoommega,
+    this.abomasnowmega,
   });
 
   MegaEvolutions.fromJson(Map<String, dynamic> json) {
@@ -201,6 +218,27 @@ class MegaEvolutions {
     blastoisemega = json['BLASTOISE_MEGA'] != null
         ? new BLASTOISEMEGA.fromJson(json['BLASTOISE_MEGA'])
         : null;
+    beedrillmega = json['BEEDRILL_MEGA'] != null
+        ? new BEEDRILLMEGA.fromJson(json['BEEDRILL_MEGA'])
+        : null;
+    pidgeotmega = json['PIDGEOT_MEGA'] != null
+        ? new PIDGEOTMEGA.fromJson(json['PIDGEOT_MEGA'])
+        : null;
+    gengarmega = json['GENGAR_MEGA'] != null
+        ? new GENGARMEGA.fromJson(json['GENGAR_MEGA'])
+        : null;
+    gyaradosmega = json['GYARADOS_MEGA'] != null
+        ? new GYARADOSMEGA.fromJson(json['GYARADOS_MEGA'])
+        : null;
+    ampharosmega = json['AMPHAROS_MEGA'] != null
+        ? new AMPHAROSMEGA.fromJson(json['AMPHAROS_MEGA'])
+        : null;
+    houndoommega = json['HOUNDOOM_MEGA'] != null
+        ? new HOUNDOOMMEGA.fromJson(json['HOUNDOOM_MEGA'])
+        : null;
+    abomasnowmega = json['ABOMASNOW_MEGA'] != null
+        ? new ABOMASNOWMEGA.fromJson(json['ABOMASNOW_MEGA'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -208,189 +246,35 @@ class MegaEvolutions {
     if (this.vENUSAURMEGA != null) {
       data['VENUSAUR_MEGA'] = this.vENUSAURMEGA.toJson();
     }
-    return data;
-  }
-}
-
-class VENUSAURMEGA {
-  String id;
-  Names names;
-  Stats stats;
-  PrimaryType primaryType;
-  SecondaryType secondaryType;
-
-  VENUSAURMEGA({
-    this.id,
-    this.names,
-    this.stats,
-    this.primaryType,
-    this.secondaryType,
-  });
-
-  VENUSAURMEGA.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    names = json['names'] != null ? new Names.fromJson(json['names']) : null;
-    stats = json['stats'] != null ? new Stats.fromJson(json['stats']) : null;
-    primaryType = json['primaryType'] != null
-        ? new PrimaryType.fromJson(json['primaryType'])
-        : null;
-    secondaryType = json['secondaryType'] != null
-        ? new SecondaryType.fromJson(json['secondaryType'])
-        : null;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    if (this.names != null) {
-      data['names'] = this.names.toJson();
+    if (this.charizardmegax != null) {
+      data['CHARIZARD_MEGA_X'] = this.charizardmegax.toJson();
     }
-    if (this.stats != null) {
-      data['stats'] = this.stats.toJson();
+    if (this.charizardmegay != null) {
+      data['CHARIZARD_MEGA_Y'] = this.charizardmegay.toJson();
     }
-    if (this.primaryType != null) {
-      data['primaryType'] = this.primaryType.toJson();
+    if (this.blastoisemega != null) {
+      data['BLASTOISE_MEGA'] = this.blastoisemega.toJson();
     }
-    if (this.secondaryType != null) {
-      data['secondaryType'] = this.secondaryType.toJson();
+    if (this.beedrillmega != null) {
+      data['BEEDRILL_MEGA'] = this.beedrillmega.toJson();
     }
-    return data;
-  }
-}
-
-class CHARIZARDMEGAX {
-  String id;
-  Names names;
-  Stats stats;
-  PrimaryType primaryType;
-  SecondaryType secondaryType;
-
-  CHARIZARDMEGAX({
-    this.id,
-    this.names,
-    this.stats,
-    this.primaryType,
-    this.secondaryType,
-  });
-
-  CHARIZARDMEGAX.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    names = json['names'] != null ? new Names.fromJson(json['names']) : null;
-    stats = json['stats'] != null ? new Stats.fromJson(json['stats']) : null;
-    primaryType = json['primaryType'] != null
-        ? new PrimaryType.fromJson(json['primaryType'])
-        : null;
-    secondaryType = json['secondaryType'] != null
-        ? new SecondaryType.fromJson(json['secondaryType'])
-        : null;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    if (this.names != null) {
-      data['names'] = this.names.toJson();
+    if (this.pidgeotmega != null) {
+      data['PIDGEOT_MEGA'] = this.pidgeotmega.toJson();
     }
-    if (this.stats != null) {
-      data['stats'] = this.stats.toJson();
+    if (this.gengarmega != null) {
+      data['GENGAR_MEGA'] = this.gengarmega.toJson();
     }
-    if (this.primaryType != null) {
-      data['primaryType'] = this.primaryType.toJson();
+    if (this.gyaradosmega != null) {
+      data['GYARADOS_MEGA'] = this.gyaradosmega.toJson();
     }
-    if (this.secondaryType != null) {
-      data['secondaryType'] = this.secondaryType.toJson();
+    if (this.ampharosmega != null) {
+      data['AMPHAROS_MEGA'] = this.ampharosmega.toJson();
     }
-    return data;
-  }
-}
-
-class CHARIZARDMEGAY {
-  String id;
-  Names names;
-  Stats stats;
-  PrimaryType primaryType;
-  SecondaryType secondaryType;
-
-  CHARIZARDMEGAY({
-    this.id,
-    this.names,
-    this.stats,
-    this.primaryType,
-    this.secondaryType,
-  });
-
-  CHARIZARDMEGAY.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    names = json['names'] != null ? new Names.fromJson(json['names']) : null;
-    stats = json['stats'] != null ? new Stats.fromJson(json['stats']) : null;
-    primaryType = json['primaryType'] != null
-        ? new PrimaryType.fromJson(json['primaryType'])
-        : null;
-    secondaryType = json['secondaryType'] != null
-        ? new SecondaryType.fromJson(json['secondaryType'])
-        : null;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    if (this.names != null) {
-      data['names'] = this.names.toJson();
+    if (this.houndoommega != null) {
+      data['HOUNDOOM_MEGA'] = this.houndoommega.toJson();
     }
-    if (this.stats != null) {
-      data['stats'] = this.stats.toJson();
-    }
-    if (this.primaryType != null) {
-      data['primaryType'] = this.primaryType.toJson();
-    }
-    if (this.secondaryType != null) {
-      data['secondaryType'] = this.secondaryType.toJson();
-    }
-    return data;
-  }
-}
-
-class BLASTOISEMEGA {
-  String id;
-  Names names;
-  Stats stats;
-  PrimaryType primaryType;
-  SecondaryType secondaryType;
-
-  BLASTOISEMEGA({
-    this.id,
-    this.names,
-    this.stats,
-    this.primaryType,
-    this.secondaryType,
-  });
-
-  BLASTOISEMEGA.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    names = json['names'] != null ? new Names.fromJson(json['names']) : null;
-    stats = json['stats'] != null ? new Stats.fromJson(json['stats']) : null;
-    primaryType = json['primaryType'] != null
-        ? new PrimaryType.fromJson(json['primaryType'])
-        : null;
-    secondaryType = json['secondaryType'] != null
-        ? new SecondaryType.fromJson(json['secondaryType'])
-        : null;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    if (this.names != null) {
-      data['names'] = this.names.toJson();
-    }
-    if (this.stats != null) {
-      data['stats'] = this.stats.toJson();
-    }
-    if (this.primaryType != null) {
-      data['primaryType'] = this.primaryType.toJson();
-    }
-    if (this.secondaryType != null) {
-      data['secondaryType'] = this.secondaryType.toJson();
+    if (this.abomasnowmega != null) {
+      data['ABOMASNOW_MEGA'] = this.abomasnowmega.toJson();
     }
     return data;
   }
