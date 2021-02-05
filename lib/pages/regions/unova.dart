@@ -74,9 +74,9 @@ class _UnovaState extends State<Unova> {
                                       pokeNum: numero,
                                       types: listTypes(index),
                                       stats: {
-                                        'atk': _unovaAPI[index].stats.attack,
-                                        'def': _unovaAPI[index].stats.defense,
-                                        'sta': _unovaAPI[index].stats.stamina,
+                                        'atk': _unovaAPI[index].stats?.attack,
+                                        'def': _unovaAPI[index].stats?.defense,
+                                        'sta': _unovaAPI[index].stats?.stamina,
                                       },
                                     );
                                   },

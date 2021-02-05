@@ -74,9 +74,9 @@ class _KantoState extends State<Kanto> {
                                       pokeNum: numero,
                                       types: listTypes(index),
                                       stats: {
-                                        'atk': _kantoAPI[index].stats.attack,
-                                        'def': _kantoAPI[index].stats.defense,
-                                        'sta': _kantoAPI[index].stats.stamina,
+                                        'atk': _kantoAPI[index].stats?.attack,
+                                        'def': _kantoAPI[index].stats?.defense,
+                                        'sta': _kantoAPI[index].stats?.stamina,
                                       },
                                     );
                                   },

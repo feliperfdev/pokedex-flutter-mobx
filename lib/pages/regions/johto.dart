@@ -74,9 +74,9 @@ class _JohtoState extends State<Johto> {
                                       pokeNum: numero,
                                       types: listTypes(index),
                                       stats: {
-                                        'atk': _johtoAPI[index].stats.attack,
-                                        'def': _johtoAPI[index].stats.defense,
-                                        'sta': _johtoAPI[index].stats.stamina,
+                                        'atk': _johtoAPI[index].stats?.attack,
+                                        'def': _johtoAPI[index].stats?.defense,
+                                        'sta': _johtoAPI[index].stats?.stamina,
                                       },
                                     );
                                   },

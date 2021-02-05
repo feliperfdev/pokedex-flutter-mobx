@@ -76,9 +76,9 @@ class _HoennState extends State<Hoenn> {
                                       pokeNum: numero,
                                       types: listTypes(index),
                                       stats: {
-                                        'atk': _hoennAPI[index].stats.attack,
-                                        'def': _hoennAPI[index].stats.defense,
-                                        'sta': _hoennAPI[index].stats.stamina,
+                                        'atk': _hoennAPI[index].stats?.attack,
+                                        'def': _hoennAPI[index].stats?.defense,
+                                        'sta': _hoennAPI[index].stats?.stamina,
                                       },
                                     );
                                   },

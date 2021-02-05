@@ -20,12 +20,12 @@ class InfoPage extends StatelessWidget {
               ),
               SizedBox(height: 50),
               GetLinkGit(
-                title: 'Felipe Ribeiro',
+                title: '> Felipe Ribeiro',
                 url: 'https://github.com/feliper2002',
               ),
               SizedBox(height: 10),
               GetLinkGit(
-                title: 'Repositório',
+                title: '> Repositório',
                 url: 'https://github.com/feliper2002/pokedex-flutter-mobx',
               ),
               SizedBox(height: 48),

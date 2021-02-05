@@ -57,8 +57,9 @@ abstract class _KalosApiStoreBase with Store {
       placeholder: (context, url) => new Container(
         color: Colors.transparent,
       ),
-      imageUrl:
-          'https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/$numero.png',
+      imageUrl: numero == '662'
+          ? 'https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/${numero}r.png'
+          : 'https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/$numero.png',
     );
   }
 }

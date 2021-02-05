@@ -21,7 +21,7 @@ class PokeTypes extends StatelessWidget {
               color = ConstsApp.getColorType(type: types[index]);
               return Card(
                 elevation: 1,
-                margin: EdgeInsets.all(9),
+                margin: EdgeInsets.all(8.5),
                 color: color,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30)),

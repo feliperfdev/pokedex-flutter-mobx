@@ -21,7 +21,10 @@ class Stats extends StatelessWidget {
                 Row(
                   children: [
                     Text('Attack:', style: pokemonStatsInfo),
-                    Text(stats['atk'].toString(),
+                    Text(
+                        stats['atk'] != null
+                            ? stats['atk'].toString()
+                            : 'No data :(',
                         style: pokemonStatsValuesInfo),
                   ],
                 ),
@@ -30,7 +33,10 @@ class Stats extends StatelessWidget {
                   child: Row(
                     children: [
                       Text('Deffense:', style: pokemonStatsInfo),
-                      Text(stats['def'].toString(),
+                      Text(
+                          stats['def'] != null
+                              ? stats['def'].toString()
+                              : 'No data :(',
                           style: pokemonStatsValuesInfo),
                     ],
                   ),
@@ -38,7 +44,10 @@ class Stats extends StatelessWidget {
                 Row(
                   children: [
                     Text('Stamina:', style: pokemonStatsInfo),
-                    Text(stats['sta'].toString(),
+                    Text(
+                        stats['sta'] != null
+                            ? stats['sta'].toString()
+                            : 'No data :(',
                         style: pokemonStatsValuesInfo),
                   ],
                 ),

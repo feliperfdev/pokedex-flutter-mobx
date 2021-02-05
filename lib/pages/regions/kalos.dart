@@ -74,9 +74,9 @@ class _KalosState extends State<Kalos> {
                                       pokeNum: numero,
                                       types: listTypes(index),
                                       stats: {
-                                        'atk': _kalosAPI[index].stats.attack,
-                                        'def': _kalosAPI[index].stats.defense,
-                                        'sta': _kalosAPI[index].stats.stamina,
+                                        'atk': _kalosAPI[index].stats?.attack,
+                                        'def': _kalosAPI[index].stats?.defense,
+                                        'sta': _kalosAPI[index].stats?.stamina,
                                       },
                                     );
                                   },

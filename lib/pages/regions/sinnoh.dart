@@ -74,9 +74,9 @@ class _SinnohState extends State<Sinnoh> {
                                       pokeNum: numero,
                                       types: listTypes(index),
                                       stats: {
-                                        'atk': _sinnohAPI[index].stats.attack,
-                                        'def': _sinnohAPI[index].stats.defense,
-                                        'sta': _sinnohAPI[index].stats.stamina,
+                                        'atk': _sinnohAPI[index].stats?.attack,
+                                        'def': _sinnohAPI[index].stats?.defense,
+                                        'sta': _sinnohAPI[index].stats?.stamina,
                                       },
                                     );
                                   },
