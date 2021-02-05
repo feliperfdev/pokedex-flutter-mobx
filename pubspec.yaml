@@ -26,6 +26,7 @@ dependencies:
   mobx:
   flutter_mobx:
   cached_network_image: ^2.0.0
+  url_launcher: ^5.7.10
   get_it: ^3.1.0
   google_fonts: ^1.1.1
   dio:

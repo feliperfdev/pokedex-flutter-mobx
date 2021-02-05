@@ -2,6 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+var infoTitle = GoogleFonts.pressStart2p(
+  color: Colors.blueGrey[900],
+  fontSize: 20,
+  fontWeight: FontWeight.w500,
+);
+
 var pokedexTitle = GoogleFonts.pressStart2p(
   color: Colors.blueGrey[900],
   fontSize: 24,
@@ -11,7 +17,16 @@ var pokedexTitle = GoogleFonts.pressStart2p(
 var pokedexDesc = GoogleFonts.pressStart2p(
   color: Colors.blueGrey[900],
   fontSize: 9,
-  // fontWeight: FontWeight.w300,
+);
+
+var infoGit = GoogleFonts.pressStart2p(
+  color: Colors.blueGrey[900],
+  fontSize: 14,
+);
+
+var infoCredit = GoogleFonts.pressStart2p(
+  color: Colors.blueGrey[900],
+  fontSize: 10,
 );
 
 var pokemonTypeInfo = GoogleFonts.pressStart2p(

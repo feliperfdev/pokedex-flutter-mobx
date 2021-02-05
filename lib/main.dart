@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex_flutter_mobx/pages/infoPage/info.dart';
 import 'package:pokedex_flutter_mobx/pages/megas/megas.dart';
 import 'package:pokedex_flutter_mobx/pages/regions/hoenn.dart';
 import 'package:pokedex_flutter_mobx/pages/regions/johto.dart';
@@ -24,6 +25,7 @@ class InitApp extends StatelessWidget {
       theme: themeScheme(),
       routes: {
         '/categories': (context) => SelectCategory(),
+        '/info': (context) => InfoPage(),
         '/regions': (context) => SelectRegion(),
         '/megas': (context) => Mega(),
         '/kanto': (context) => Kanto(),

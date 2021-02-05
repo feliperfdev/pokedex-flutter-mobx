@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pokedex_flutter_mobx/styles/themeScheme.dart';
@@ -11,11 +13,16 @@ class SelectCategory extends StatelessWidget {
           children: [
             Container(
               decoration: BoxDecoration(
-                color: backgroundWhite,
-                image: DecorationImage(
-                  image: AssetImage('assets/images/w2.jpg'),
-                  fit: BoxFit.fill,
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    Colors.red,
+                    Colors.black,
+                    Colors.grey,
+                  ],
                 ),
+                color: backgroundWhite,
               ),
               padding: EdgeInsets.all(20),
               child: SafeArea(
@@ -44,7 +51,7 @@ class SelectCategory extends StatelessWidget {
                 hoverColor: Colors.red.withOpacity(0.6),
                 splashColor: Colors.red.withOpacity(0.6),
                 splashRadius: 24,
-                icon: Icon(Icons.help, color: Colors.red, size: 30),
+                icon: Icon(Icons.help, color: Colors.white, size: 30),
                 onPressed: () {
                   print('O botão foi apertado.');
                   Navigator.pushNamed(context, '/info');

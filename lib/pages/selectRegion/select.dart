@@ -6,51 +6,65 @@ class SelectRegion extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: Container(
-        padding: EdgeInsets.all(20),
-        color: backgroundWhite,
-        child: SafeArea(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              RegionButton(
-                name: 'Kanto',
-                onTap: () {
-                  Navigator.pushNamed(context, '/kanto');
-                },
-              ),
-              RegionButton(
-                name: 'Johto',
-                onTap: () {
-                  Navigator.pushNamed(context, '/johto');
-                },
-              ),
-              RegionButton(
-                name: 'Hoenn',
-                onTap: () {
-                  Navigator.pushNamed(context, '/hoenn');
-                },
-              ),
-              RegionButton(
-                name: 'Sinnoh',
-                onTap: () {
-                  Navigator.pushNamed(context, '/sinnoh');
-                },
-              ),
-              RegionButton(
-                name: 'Unova',
-                onTap: () {
-                  Navigator.pushNamed(context, '/unova');
-                },
-              ),
-              RegionButton(
-                name: 'Kalos',
-                onTap: () {
-                  Navigator.pushNamed(context, '/kalos');
-                },
-              ),
-            ],
+      appBar: AppBar(
+        backgroundColor: Colors.red.withRed(210),
+      ),
+      body: SafeArea(
+        child: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Colors.red,
+                Colors.black,
+                Colors.grey,
+              ],
+            ),
+          ),
+          padding: EdgeInsets.all(20),
+          child: SafeArea(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                RegionButton(
+                  name: 'Kanto',
+                  onTap: () {
+                    Navigator.pushNamed(context, '/kanto');
+                  },
+                ),
+                RegionButton(
+                  name: 'Johto',
+                  onTap: () {
+                    Navigator.pushNamed(context, '/johto');
+                  },
+                ),
+                RegionButton(
+                  name: 'Hoenn',
+                  onTap: () {
+                    Navigator.pushNamed(context, '/hoenn');
+                  },
+                ),
+                RegionButton(
+                  name: 'Sinnoh',
+                  onTap: () {
+                    Navigator.pushNamed(context, '/sinnoh');
+                  },
+                ),
+                RegionButton(
+                  name: 'Unova',
+                  onTap: () {
+                    Navigator.pushNamed(context, '/unova');
+                  },
+                ),
+                RegionButton(
+                  name: 'Kalos',
+                  onTap: () {
+                    Navigator.pushNamed(context, '/kalos');
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),
