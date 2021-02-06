@@ -20,8 +20,8 @@ abstract class _DescriptionStoreBase with Store {
   }
 
   Future<DescriptionAPI> loadPokeAPIDescription(String name) async {
-    name = name.toLowerCase();
     List<String> separa = name.split(' ');
+    name = name.toLowerCase();
     if (separa.length == 2 && (separa[0] == 'Mega')) {
       name = separa[1];
     }
