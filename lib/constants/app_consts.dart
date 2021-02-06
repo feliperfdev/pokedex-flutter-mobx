@@ -1,12 +1,5 @@
 import 'package:flutter/material.dart';
 
-class PokeDescriptions {
-  String getDescription(String name) {
-    if (name != null) name = name.toLowerCase();
-    return 'https://pokeapi.co/api/v2/pokemon-species/$name/';
-  }
-}
-
 class ConstsApp {
   static const String whitePokeball = 'assets/images/pokeball.png';
   static const String darkPokeball = 'assets/images/pokeball_dark.png';
