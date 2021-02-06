@@ -1,70 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pokedex_flutter_mobx/styles/themeScheme.dart';
+import 'package:pokedex_flutter_mobx/constants/app_consts.dart';
 
 class SelectRegion extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.red.withRed(210),
-      ),
+      appBar: AppBar(),
       body: SafeArea(
         child: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                Colors.red,
-                Colors.black,
-                Colors.grey,
-              ],
-            ),
-          ),
-          padding: EdgeInsets.all(20),
-          child: SafeArea(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                RegionButton(
-                  name: 'Kanto',
-                  onTap: () {
-                    Navigator.pushNamed(context, '/kanto');
-                  },
-                ),
-                RegionButton(
-                  name: 'Johto',
-                  onTap: () {
-                    Navigator.pushNamed(context, '/johto');
-                  },
-                ),
-                RegionButton(
-                  name: 'Hoenn',
-                  onTap: () {
-                    Navigator.pushNamed(context, '/hoenn');
-                  },
-                ),
-                RegionButton(
-                  name: 'Sinnoh',
-                  onTap: () {
-                    Navigator.pushNamed(context, '/sinnoh');
-                  },
-                ),
-                RegionButton(
-                  name: 'Unova',
-                  onTap: () {
-                    Navigator.pushNamed(context, '/unova');
-                  },
-                ),
-                RegionButton(
-                  name: 'Kalos',
-                  onTap: () {
-                    Navigator.pushNamed(context, '/kalos');
-                  },
-                ),
-              ],
-            ),
+          padding: EdgeInsets.all(10),
+          child: Column(
+            children: [
+              RegionButton(),
+            ],
           ),
         ),
       ),
@@ -73,42 +22,76 @@ class SelectRegion extends StatelessWidget {
 }
 
 class RegionButton extends StatelessWidget {
-  final String name;
-  final Function onTap;
-
-  const RegionButton({Key key, this.name, this.onTap}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    return GestureDetector(
-      child: Container(
-        margin: EdgeInsets.all(20),
-        height: size.height / 20,
-        width: size.width - 30,
-        decoration: BoxDecoration(
-          color: Colors.redAccent,
-          borderRadius: BorderRadius.circular(20),
+    return Expanded(
+      child: GridView.builder(
+        itemCount: routes.length,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisSpacing: 13,
+          mainAxisSpacing: 25,
+          crossAxisCount: 2,
+          childAspectRatio: 1.5,
         ),
-        child: Row(
-          children: [
-            Icon(
-              Icons.arrow_drop_down_circle,
-              color: backgroundWhite,
-            ),
-            Spacer(),
-            Text(
-              name,
-              style: GoogleFonts.pressStart2p(
-                color: backgroundWhite,
-                fontSize: 18,
+        itemBuilder: (context, index) {
+          return GestureDetector(
+            child: Container(
+              color: colors[index],
+              height: 10,
+              width: 60,
+              child: Row(
+                children: [
+                  Opacity(
+                    opacity: 0.8,
+                    child: Image.asset(
+                      ConstsApp.whitePokeball,
+                      fit: BoxFit.cover,
+                      height: 80,
+                      width: 80,
+                    ),
+                  ),
+                  SizedBox(width: 8),
+                  Text(
+                    regionsName[index],
+                    style: GoogleFonts.pressStart2p(
+                      fontSize: 14,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
               ),
             ),
-            Spacer(),
-          ],
-        ),
+            onTap: () {
+              Navigator.pushNamed(context, routes[index]);
+            },
+          );
+        },
       ),
-      onTap: onTap,
     );
   }
 }
+
+List<Color> colors = [
+  Colors.redAccent,
+  Colors.greenAccent,
+  Colors.blueAccent,
+  Colors.orangeAccent,
+  Colors.purpleAccent,
+  Colors.grey,
+];
+List<String> routes = [
+  '/kanto',
+  '/johto',
+  '/hoenn',
+  '/sinnoh',
+  '/unova',
+  '/kalos',
+];
+List<String> regionsName = [
+  'Kanto',
+  'Johto',
+  'Hoenn',
+  'Sinnoh',
+  'Unova',
+  'Kalos',
+];

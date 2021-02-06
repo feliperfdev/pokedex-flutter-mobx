@@ -1,62 +1,34 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pokedex_flutter_mobx/styles/themeScheme.dart';
+import 'package:pokedex_flutter_mobx/constants/app_consts.dart';
 
 class SelectCategory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
+      appBar: AppBar(
+        actions: [
+          IconButton(
+            splashRadius: 24,
+            splashColor: Colors.red.withOpacity(0.6),
+            icon: Icon(
+              Icons.info,
+              color: Colors.redAccent,
+              size: 40,
+            ),
+            onPressed: () {
+              Navigator.pushNamed(context, '/info');
+            },
+          ),
+        ],
+      ),
       body: SafeArea(
-        child: Stack(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    Colors.red,
-                    Colors.black,
-                    Colors.grey,
-                  ],
-                ),
-                color: backgroundWhite,
-              ),
-              padding: EdgeInsets.all(20),
-              child: SafeArea(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    CategoryButton(
-                      name: 'Regions',
-                      onTap: () {
-                        Navigator.pushNamed(context, '/regions');
-                      },
-                    ),
-                    CategoryButton(
-                      name: 'Megas',
-                      onTap: () {
-                        Navigator.pushNamed(context, '/megas');
-                      },
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Align(
-              alignment: Alignment.topRight,
-              child: IconButton(
-                hoverColor: Colors.red.withOpacity(0.6),
-                splashColor: Colors.red.withOpacity(0.6),
-                splashRadius: 24,
-                icon: Icon(Icons.help, color: Colors.white, size: 30),
-                onPressed: () {
-                  print('O botão foi apertado.');
-                  Navigator.pushNamed(context, '/info');
-                },
-              ),
-            ),
+            CategoryButtons(),
           ],
         ),
       ),
@@ -64,44 +36,64 @@ class SelectCategory extends StatelessWidget {
   }
 }
 
-class CategoryButton extends StatelessWidget {
-  final String name;
-  final Function onTap;
-
-  const CategoryButton({Key key, this.name, this.onTap}) : super(key: key);
-
+class CategoryButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return GestureDetector(
-      child: Container(
-        margin: EdgeInsets.all(20),
-        height: size.height / 20,
-        width: size.width - 30,
-        decoration: BoxDecoration(
-          color: Colors.redAccent,
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: Row(
-          children: [
-            Icon(
-              Icons.arrow_drop_down_circle,
-              color: backgroundWhite,
-            ),
-            Spacer(),
-            Text(
-              name,
-              style: GoogleFonts.pressStart2p(
-                color: backgroundWhite,
-                fontSize: 18,
-                decoration: TextDecoration.none,
+    return Expanded(
+      child: ListView.builder(
+        padding: EdgeInsets.only(left: 20, right: 20, top: (size.height / 10)),
+        itemCount: routes.length,
+        itemBuilder: (context, index) {
+          return Container(
+            padding: EdgeInsets.only(bottom: 20),
+            child: GestureDetector(
+              child: Container(
+                padding: EdgeInsets.only(left: 10),
+                color: colors[index],
+                height: size.height / 3,
+                child: Row(
+                  children: [
+                    Opacity(
+                      opacity: 0.8,
+                      child: Image.asset(
+                        ConstsApp.whitePokeball,
+                        fit: BoxFit.cover,
+                        height: 80,
+                        width: 80,
+                      ),
+                    ),
+                    SizedBox(width: 20),
+                    Text(
+                      categoryName[index],
+                      style: GoogleFonts.pressStart2p(
+                        fontSize: 30,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
+                ),
               ),
+              onTap: () {
+                Navigator.pushNamed(context, routes[index]);
+              },
             ),
-            Spacer(),
-          ],
-        ),
+          );
+        },
       ),
-      onTap: onTap,
     );
   }
 }
+
+List<Color> colors = [
+  Colors.blueAccent,
+  Colors.orangeAccent,
+];
+List<String> routes = [
+  '/regions',
+  '/megas',
+];
+List<String> categoryName = [
+  'Regions',
+  'Megas',
+];

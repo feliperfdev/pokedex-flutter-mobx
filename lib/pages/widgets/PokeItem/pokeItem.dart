@@ -7,7 +7,7 @@ import 'picture.dart';
 import 'pokemonName.dart';
 import 'types.dart';
 
-class PokeItem extends StatelessWidget {
+class PokeItem extends StatefulWidget {
   final String nome;
   final int index;
   final String pokeNum;
@@ -30,12 +30,17 @@ class PokeItem extends StatelessWidget {
   });
 
   @override
+  _PokeItemState createState() => _PokeItemState();
+}
+
+class _PokeItemState extends State<PokeItem> {
+  @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    color = ConstsApp.getColorType(type: types[0]);
-    final double offset = this.activePage ? 10 : 0;
-    final double blurRadius = this.activePage ? 18 : 0;
-    final double containerMenor = this.activePage ? 8 : 40;
+    widget.color = ConstsApp.getColorType(type: widget.types[0]);
+    final double offset = this.widget.activePage ? 10 : 0;
+    final double blurRadius = this.widget.activePage ? 18 : 0;
+    final double containerMenor = this.widget.activePage ? 8 : 40;
     return AnimatedContainer(
       duration: Duration(milliseconds: 500),
       margin:
@@ -59,42 +64,42 @@ class PokeItem extends StatelessWidget {
             margin: EdgeInsets.only(bottom: 20),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
-              color: color,
+              color: widget.color,
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
-                  pokeNum.length < 2
-                      ? '#00$pokeNum'
-                      : pokeNum.length < 3
-                          ? '#0$pokeNum'
-                          : '#$pokeNum',
+                  widget.pokeNum.length < 2
+                      ? '#00${widget.pokeNum}'
+                      : widget.pokeNum.length < 3
+                          ? '#0${widget.pokeNum}'
+                          : '#${widget.pokeNum}',
                   style: pokemonName,
                 ),
                 AnimatedContainer(
                   duration: Duration(milliseconds: 500),
-                  height: !activePage ? 0 : 160,
+                  height: !widget.activePage ? 0 : 160,
                   child: Stack(
                     children: [
                       LowOpacityPokeball(),
                       PokemonPicture(
-                        pokeImage: image,
+                        pokeImage: widget.image,
                       ),
                     ],
                   ),
                 ),
-                PokemonName(nome: nome),
+                PokemonName(nome: widget.nome),
               ],
             ),
           ),
           Text('Types', style: pokemonTypeInfo),
           PokeTypes(
-            types: types,
+            types: widget.types,
           ),
           Divider(thickness: 3),
           SizedBox(height: 10),
-          Stats(stats: stats),
+          Stats(stats: widget.stats),
         ],
       ),
     );
