@@ -4,7 +4,7 @@ import 'package:pokedex_flutter_mobx/models/pokeApiJohto.dart';
 import 'package:pokedex_flutter_mobx/pages/widgets/PokeItem/pokeItem.dart';
 import 'package:pokedex_flutter_mobx/pages/widgets/appBar.dart';
 import 'package:pokedex_flutter_mobx/pages/widgets/darkPokeball.dart';
-import 'package:pokedex_flutter_mobx/stores/johtoapi_store.dart';
+import 'package:pokedex_flutter_mobx/stores/Johto/johtoapi_store.dart';
 
 class Johto extends StatefulWidget {
   @override

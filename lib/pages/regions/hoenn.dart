@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:pokedex_flutter_mobx/models/pokeApiHoenn.dart';
-import 'package:pokedex_flutter_mobx/models/pokeApiJohto.dart';
 import 'package:pokedex_flutter_mobx/pages/widgets/PokeItem/pokeItem.dart';
 import 'package:pokedex_flutter_mobx/pages/widgets/appBar.dart';
 import 'package:pokedex_flutter_mobx/pages/widgets/darkPokeball.dart';
-import 'package:pokedex_flutter_mobx/stores/hoennapi_store.dart';
-import 'package:pokedex_flutter_mobx/stores/pokeapi_store.dart';
+import 'package:pokedex_flutter_mobx/stores/Hoenn/hoennapi_store.dart';
 
 class Hoenn extends StatefulWidget {
   @override

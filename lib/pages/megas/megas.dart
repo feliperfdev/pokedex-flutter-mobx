@@ -4,7 +4,7 @@ import 'package:pokedex_flutter_mobx/models/megasApi.dart';
 import 'package:pokedex_flutter_mobx/pages/widgets/PokeItem/pokeItem.dart';
 import 'package:pokedex_flutter_mobx/pages/widgets/appBar.dart';
 import 'package:pokedex_flutter_mobx/pages/widgets/darkPokeball.dart';
-import 'package:pokedex_flutter_mobx/stores/apiMega_store.dart';
+import 'package:pokedex_flutter_mobx/stores/Mega/apiMega_store.dart';
 
 class Mega extends StatefulWidget {
   @override

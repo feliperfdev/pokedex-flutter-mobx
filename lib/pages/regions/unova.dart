@@ -4,7 +4,7 @@ import 'package:pokedex_flutter_mobx/models/pokeApiUnova.dart';
 import 'package:pokedex_flutter_mobx/pages/widgets/PokeItem/pokeItem.dart';
 import 'package:pokedex_flutter_mobx/pages/widgets/appBar.dart';
 import 'package:pokedex_flutter_mobx/pages/widgets/darkPokeball.dart';
-import 'package:pokedex_flutter_mobx/stores/unovaapi_store.dart';
+import 'package:pokedex_flutter_mobx/stores/Unova/unovaapi_store.dart';
 
 class Unova extends StatefulWidget {
   @override
