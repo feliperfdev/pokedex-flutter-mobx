@@ -6,6 +6,10 @@
 - [x] Pokédex completa até a 6ª geração
 - [x] Algumas Mega Evoluções
 
+### v1.0.6
+
+- [x] Novo design das páginas e dos botões
+
 ## Sobre:
 
 Esse projeto serviu como uma boa base para os estudos da tecnologia de gerenciamento de estado MobX. <p>
