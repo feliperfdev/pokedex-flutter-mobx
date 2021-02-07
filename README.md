@@ -17,7 +17,7 @@ Neste link, está o projeto desenvolvido sem MobX e com diferenças no design: [
 
 ## API Utilizada:
 
-[Pokémon GO API](https://pokemon-go-lingen.github.io/pokemon-go-api/)
+[Pokémon GO API](https://pokemon-go-lingen.github.io/pokemon-go-api/) - Repositório da API no [GitHub](https://github.com/pokemon-go-lingen/pokemon-go-api)
 
 ## Técnologias Utilizadas:
 
