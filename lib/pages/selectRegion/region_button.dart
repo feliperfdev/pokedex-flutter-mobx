@@ -20,6 +20,7 @@ class RegionButton extends StatelessWidget {
             itemBuilder: (context, index) {
               return GestureDetector(
                 child: Container(
+                  padding: EdgeInsets.only(left: 3),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     color: colors[index],
@@ -31,7 +32,7 @@ class RegionButton extends StatelessWidget {
                         child: Image.asset(
                           ConstsApp.whitePokeball,
                           fit: BoxFit.cover,
-                          height: constraints.maxHeight * .11,
+                          height: constraints.maxHeight * .12,
                           width: constraints.maxWidth * .2,
                         ),
                       ),

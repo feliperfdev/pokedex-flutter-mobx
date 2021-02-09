@@ -13,6 +13,7 @@
 ### v1.0.7
 
 - [x] Novo layout responsivo (apenas tela na vertical por enquanto).
+- [x] Splash screen animation
 
 ## Sobre:
 

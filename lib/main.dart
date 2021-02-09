@@ -9,6 +9,7 @@ import 'package:pokedex_flutter_mobx/pages/regions/sinnoh.dart';
 import 'package:pokedex_flutter_mobx/pages/regions/unova.dart';
 import 'package:pokedex_flutter_mobx/pages/selectCategory/categoryPage.dart';
 import 'package:pokedex_flutter_mobx/pages/selectRegion/select.dart';
+import 'package:pokedex_flutter_mobx/splash/splash_screen.dart';
 import 'package:pokedex_flutter_mobx/styles/themeScheme.dart';
 
 void main() => runApp(InitApp());
@@ -21,9 +22,10 @@ class InitApp extends StatelessWidget {
     return MaterialApp(
       title: 'Pokédex',
       debugShowCheckedModeBanner: false,
-      initialRoute: '/categories',
+      initialRoute: '/splash',
       theme: themeScheme(),
       routes: {
+        '/splash': (context) => Splash(),
         '/categories': (context) => SelectCategory(),
         '/info': (context) => InfoPage(),
         '/regions': (context) => SelectRegion(),
