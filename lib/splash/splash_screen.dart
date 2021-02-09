@@ -25,7 +25,7 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
 
     controller..forward();
     Future.delayed(Duration(seconds: 3), () {
-      Navigator.pushNamed(context, '/categories');
+      Navigator.pushReplacementNamed(context, '/categories');
     });
   }
 
