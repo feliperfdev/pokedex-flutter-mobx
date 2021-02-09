@@ -6,11 +6,13 @@ class PokemonPicture extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.only(left: 10, top: 12),
-      height: MediaQuery.of(context).size.height / 5,
-      width: 160,
-      child: pokeImage,
+    return LayoutBuilder(
+      builder: (context, constraints) => Container(
+        padding: EdgeInsets.only(left: 10, top: 12),
+        height: constraints.maxHeight,
+        width: constraints.maxWidth * .53,
+        child: pokeImage,
+      ),
     );
   }
 }

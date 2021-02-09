@@ -8,54 +8,58 @@ class Stats extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.only(bottom: 5),
-      child: Column(
-        children: [
-          Text('STATS', style: pokemonTypeInfo),
-          Container(
-            margin: EdgeInsets.only(top: 10),
-            padding: EdgeInsets.only(left: 20, top: 10),
-            child: Column(
-              children: [
-                Row(
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return Container(
+          padding: EdgeInsets.only(bottom: 5),
+          child: Column(
+            children: [
+              Text('STATS', style: pokemonTypeInfo),
+              Container(
+                margin: EdgeInsets.only(top: 10),
+                padding: EdgeInsets.only(left: 20, top: 10),
+                child: Column(
                   children: [
-                    Text('Attack:', style: pokemonStatsInfo),
-                    Text(
-                        stats['atk'] != null
-                            ? stats['atk'].toString()
-                            : 'No data :(',
-                        style: pokemonStatsValuesInfo),
+                    Row(
+                      children: [
+                        Text('Attack:', style: pokemonStatsInfo),
+                        Text(
+                            stats['atk'] != null
+                                ? stats['atk'].toString()
+                                : 'No data :(',
+                            style: pokemonStatsValuesInfo),
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      child: Row(
+                        children: [
+                          Text('Deffense:', style: pokemonStatsInfo),
+                          Text(
+                              stats['def'] != null
+                                  ? stats['def'].toString()
+                                  : 'No data :(',
+                              style: pokemonStatsValuesInfo),
+                        ],
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        Text('Stamina:', style: pokemonStatsInfo),
+                        Text(
+                            stats['sta'] != null
+                                ? stats['sta'].toString()
+                                : 'No data :(',
+                            style: pokemonStatsValuesInfo),
+                      ],
+                    ),
                   ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 5),
-                  child: Row(
-                    children: [
-                      Text('Deffense:', style: pokemonStatsInfo),
-                      Text(
-                          stats['def'] != null
-                              ? stats['def'].toString()
-                              : 'No data :(',
-                          style: pokemonStatsValuesInfo),
-                    ],
-                  ),
-                ),
-                Row(
-                  children: [
-                    Text('Stamina:', style: pokemonStatsInfo),
-                    Text(
-                        stats['sta'] != null
-                            ? stats['sta'].toString()
-                            : 'No data :(',
-                        style: pokemonStatsValuesInfo),
-                  ],
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

@@ -7,15 +7,17 @@ class SelectRegion extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: SafeArea(
-        child: Container(
-          padding: EdgeInsets.all(10),
-          child: Column(
-            children: [
-              RegionButton(),
-            ],
-          ),
-        ),
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          return Container(
+            padding: EdgeInsets.all(10),
+            child: Column(
+              children: [
+                RegionButton(),
+              ],
+            ),
+          );
+        },
       ),
     );
   }

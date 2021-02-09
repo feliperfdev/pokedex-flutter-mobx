@@ -8,32 +8,34 @@ class PokeAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size screenSize = MediaQuery.of(context).size;
-    double screenHeight = screenSize.height;
-    return Container(
-      padding: EdgeInsets.only(left: 20, top: 15),
-      height: screenHeight / 6.5,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return Container(
+          padding: EdgeInsets.only(left: 20, top: 15),
+          height: constraints.maxWidth * .25,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Pokédex', style: pokedexTitle),
-              Spacer(),
-              IconButton(
-                hoverColor: Colors.red.withOpacity(0.6),
-                splashColor: Colors.red.withOpacity(0.6),
-                splashRadius: 20,
-                icon: Icon(Icons.arrow_back, size: 30),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                  print('Ajustando as listas...');
-                },
+              Row(
+                children: [
+                  Text('Pokédex', style: pokedexTitle),
+                  Spacer(),
+                  IconButton(
+                    hoverColor: Colors.red.withOpacity(0.6),
+                    splashColor: Colors.red.withOpacity(0.6),
+                    splashRadius: 20,
+                    icon: Icon(Icons.arrow_back, size: 30),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                      print('Ajustando as listas...');
+                    },
+                  ),
+                ],
               ),
             ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

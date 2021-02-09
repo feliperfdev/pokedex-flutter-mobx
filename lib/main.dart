@@ -42,7 +42,8 @@ class InitApp extends StatelessWidget {
 /*
 
 ROUTES:
- /categories   Select Categories Pafe
+ /categories   Select Categories Page
+ /info       Info page
  /megas     Megas Dex
  /regions   Select Regions Page
  /kanto    Kanto Dex

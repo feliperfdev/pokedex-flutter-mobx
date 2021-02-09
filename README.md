@@ -10,6 +10,10 @@
 
 - [x] Novo design das páginas e dos botões
 
+### v1.0.7
+
+- [x] Novo layout responsivo (apenas tela na vertical por enquanto).
+
 ## Sobre:
 
 Esse projeto serviu como uma boa base para os estudos da tecnologia de gerenciamento de estado MobX. <p>
@@ -17,7 +21,7 @@ Neste link, está o projeto desenvolvido sem MobX e com diferenças no design: [
 
 ## Screenshots da aplicação:
 
-<img src='screenshots/screenshot_1.png' width=200><img src='screenshots/screenshot_2.png' width=200><img src='screenshots/screenshot_3.png' width=200><img src='screenshots/screenshot_4.png' width=200><img src='screenshots/screenshot_5.png' width=200>
+<img src='screenshots/screenshot_2.png' width='30%'><img src='screenshots/screenshot_4.png' width='30%'><img src='screenshots/screenshot_3.png' width='30%'><img src='screenshots/screenshot_6.png' width='30%'><img src='screenshots/screenshot_5.png' width='30%'><img src='screenshots/screenshot_7.png' width='30%'>
 
 ## API Utilizada:
 

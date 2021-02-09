@@ -12,13 +12,15 @@ class SelectCategory extends StatelessWidget {
           InfoButton(),
         ],
       ),
-      body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            CategoryButtons(),
-          ],
-        ),
+      body: LayoutBuilder(
+        builder: (_, constraints) {
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              CategoryButtons(),
+            ],
+          );
+        },
       ),
     );
   }
