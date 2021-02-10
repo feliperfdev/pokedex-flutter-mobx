@@ -9,7 +9,6 @@ class PokeTypes extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Align(
       alignment: Alignment.topLeft,
       child: LayoutBuilder(
