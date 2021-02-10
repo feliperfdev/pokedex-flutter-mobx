@@ -12,30 +12,32 @@ class PokeTypes extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Align(
       alignment: Alignment.topLeft,
-      child: Container(
-        height: size.height / 15,
-        child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: types.length,
-            itemBuilder: (_, index) {
-              color = ConstsApp.getColorType(type: types[index]);
-              return Card(
-                elevation: 1,
-                margin: EdgeInsets.all(8.5),
-                color: color,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30)),
-                child: Container(
-                  width: 90,
-                  padding: EdgeInsets.all(3),
-                  child: Text(
-                    types[index],
-                    style: typeName,
-                    textAlign: TextAlign.center,
+      child: LayoutBuilder(
+        builder: (context, constraints) => Container(
+          height: constraints.maxWidth * .172,
+          child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: types.length,
+              itemBuilder: (_, index) {
+                color = ConstsApp.getColorType(type: types[index]);
+                return Card(
+                  elevation: 1,
+                  margin: EdgeInsets.all(8.5),
+                  color: color,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30)),
+                  child: Container(
+                    width: 90,
+                    padding: EdgeInsets.all(3),
+                    child: Text(
+                      types[index],
+                      style: typeName,
+                      textAlign: TextAlign.center,
+                    ),
                   ),
-                ),
-              );
-            }),
+                );
+              }),
+        ),
       ),
     );
   }
