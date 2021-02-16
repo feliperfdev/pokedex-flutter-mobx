@@ -17,6 +17,7 @@ class PokeItem extends StatefulWidget {
   final Widget image;
   final List<String> types;
   final bool hasMega;
+  final List<String> description;
   PokeItem({
     this.image,
     this.color,
@@ -27,6 +28,7 @@ class PokeItem extends StatefulWidget {
     this.activePage,
     this.stats,
     this.hasMega,
+    this.description,
   });
 
   @override

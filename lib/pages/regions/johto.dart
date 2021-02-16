@@ -18,6 +18,7 @@ class _JohtoState extends State<Johto> {
   PageController _pageController = PageController(viewportFraction: 0.8);
 
   List<PokeAPIJohto> johtodex = [];
+
   @override
   void initState() {
     super.initState();
@@ -56,6 +57,7 @@ class _JohtoState extends State<Johto> {
                           List<PokeAPIJohto> _johtoAPI = [];
                           _johtoAPI = johtoApiStore.apiJohto;
                           johtodex = _johtoAPI;
+
                           return (_johtoAPI != null)
                               ? PageView.builder(
                                   controller: _pageController,
