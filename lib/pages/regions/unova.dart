@@ -4,7 +4,7 @@ import 'package:pokedex_flutter_mobx/models/pokeApiUnova.dart';
 import 'package:pokedex_flutter_mobx/pages/widgets/PokeItem/pokeItem.dart';
 import 'package:pokedex_flutter_mobx/pages/widgets/appBar.dart';
 import 'package:pokedex_flutter_mobx/pages/widgets/darkPokeball.dart';
-import 'package:pokedex_flutter_mobx/stores/Unova/unovaapi_store.dart';
+import 'package:pokedex_flutter_mobx/splash/fetchAll.dart';
 
 class Unova extends StatefulWidget {
   @override
@@ -12,8 +12,6 @@ class Unova extends StatefulWidget {
 }
 
 class _UnovaState extends State<Unova> {
-  UnovaApiStore unovaApiStore;
-
   int _currentPage = 0;
   PageController _pageController = PageController(viewportFraction: 0.8);
 
@@ -21,10 +19,7 @@ class _UnovaState extends State<Unova> {
   @override
   void initState() {
     super.initState();
-    unovaApiStore = UnovaApiStore();
-    print('Tentando dar fetch na API de Unova...');
-    unovaApiStore.fetchPokeAPIUnova();
-    print('Ótimo!! Conseguimos dar o fetch!');
+
     _pageController.addListener(() {
       int next = _pageController.page.round();
       if (_currentPage != next) {

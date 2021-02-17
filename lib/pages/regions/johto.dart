@@ -4,7 +4,7 @@ import 'package:pokedex_flutter_mobx/models/pokeApiJohto.dart';
 import 'package:pokedex_flutter_mobx/pages/widgets/PokeItem/pokeItem.dart';
 import 'package:pokedex_flutter_mobx/pages/widgets/appBar.dart';
 import 'package:pokedex_flutter_mobx/pages/widgets/darkPokeball.dart';
-import 'package:pokedex_flutter_mobx/stores/Johto/johtoapi_store.dart';
+import 'package:pokedex_flutter_mobx/splash/fetchAll.dart';
 
 class Johto extends StatefulWidget {
   @override
@@ -12,8 +12,6 @@ class Johto extends StatefulWidget {
 }
 
 class _JohtoState extends State<Johto> {
-  JohtoApiStore johtoApiStore;
-
   int _currentPage = 0;
   PageController _pageController = PageController(viewportFraction: 0.8);
 
@@ -22,10 +20,6 @@ class _JohtoState extends State<Johto> {
   @override
   void initState() {
     super.initState();
-    johtoApiStore = JohtoApiStore();
-    print('Tentando dar fetch na API de Johto...');
-    johtoApiStore.fetchPokeAPIJohto();
-    print('Ótimo!! Conseguimos dar o fetch!');
     _pageController.addListener(() {
       int next = _pageController.page.round();
       if (_currentPage != next) {

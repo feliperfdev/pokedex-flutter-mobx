@@ -4,7 +4,7 @@ import 'package:pokedex_flutter_mobx/models/pokeApiKalos.dart';
 import 'package:pokedex_flutter_mobx/pages/widgets/PokeItem/pokeItem.dart';
 import 'package:pokedex_flutter_mobx/pages/widgets/appBar.dart';
 import 'package:pokedex_flutter_mobx/pages/widgets/darkPokeball.dart';
-import 'package:pokedex_flutter_mobx/stores/Kalos/kalosapi_store.dart';
+import 'package:pokedex_flutter_mobx/splash/fetchAll.dart';
 
 class Kalos extends StatefulWidget {
   @override
@@ -12,8 +12,6 @@ class Kalos extends StatefulWidget {
 }
 
 class _KalosState extends State<Kalos> {
-  KalosApiStore kalosApiStore;
-
   int _currentPage = 0;
   PageController _pageController = PageController(viewportFraction: 0.8);
 
@@ -21,10 +19,6 @@ class _KalosState extends State<Kalos> {
   @override
   void initState() {
     super.initState();
-    kalosApiStore = KalosApiStore();
-    print('Tentando dar fetch na API de Kalos...');
-    kalosApiStore.fetchPokeAPIKalos();
-    print('Ótimo!! Conseguimos dar o fetch!');
     _pageController.addListener(() {
       int next = _pageController.page.round();
       if (_currentPage != next) {

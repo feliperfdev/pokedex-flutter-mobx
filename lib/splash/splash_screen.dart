@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex_flutter_mobx/splash/fetchAll.dart';
 
 class Splash extends StatefulWidget {
   @override
@@ -12,6 +13,8 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
+
+    fetchAllPokemonAPIs(); // fetch all app Pokémon APIs once
 
     controller = AnimationController(
       duration: Duration(seconds: 3),

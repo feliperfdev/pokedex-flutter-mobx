@@ -4,7 +4,7 @@ import 'package:pokedex_flutter_mobx/models/pokeapi.dart';
 import 'package:pokedex_flutter_mobx/pages/widgets/PokeItem/pokeItem.dart';
 import 'package:pokedex_flutter_mobx/pages/widgets/appBar.dart';
 import 'package:pokedex_flutter_mobx/pages/widgets/darkPokeball.dart';
-import 'package:pokedex_flutter_mobx/stores/Kanto/pokeapi_store.dart';
+import 'package:pokedex_flutter_mobx/splash/fetchAll.dart';
 
 class Kanto extends StatefulWidget {
   @override
@@ -12,8 +12,6 @@ class Kanto extends StatefulWidget {
 }
 
 class _KantoState extends State<Kanto> {
-  PokeApiStore pokeApiStore;
-
   int _currentPage = 0;
   PageController _pageController = PageController(viewportFraction: 0.8);
 
@@ -21,10 +19,6 @@ class _KantoState extends State<Kanto> {
   @override
   void initState() {
     super.initState();
-    pokeApiStore = PokeApiStore();
-    print('Tentando dar fetch na API de Kanto...');
-    pokeApiStore.fetchPokeAPIKanto();
-    print('Ótimo!! Conseguimos dar o fetch!');
     _pageController.addListener(() {
       int next = _pageController.page.round();
       if (_currentPage != next) {

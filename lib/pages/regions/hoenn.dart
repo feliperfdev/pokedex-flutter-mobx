@@ -4,7 +4,7 @@ import 'package:pokedex_flutter_mobx/models/pokeApiHoenn.dart';
 import 'package:pokedex_flutter_mobx/pages/widgets/PokeItem/pokeItem.dart';
 import 'package:pokedex_flutter_mobx/pages/widgets/appBar.dart';
 import 'package:pokedex_flutter_mobx/pages/widgets/darkPokeball.dart';
-import 'package:pokedex_flutter_mobx/stores/Hoenn/hoennapi_store.dart';
+import 'package:pokedex_flutter_mobx/splash/fetchAll.dart';
 
 class Hoenn extends StatefulWidget {
   @override
@@ -12,8 +12,6 @@ class Hoenn extends StatefulWidget {
 }
 
 class _HoennState extends State<Hoenn> {
-  HoennApiStore hoennApiStore;
-
   int _currentPage = 0;
   PageController _pageController = PageController(viewportFraction: 0.8);
 
@@ -21,10 +19,6 @@ class _HoennState extends State<Hoenn> {
   @override
   void initState() {
     super.initState();
-    hoennApiStore = HoennApiStore();
-    print('Tentando dar fetch na API de Hoenn...');
-    hoennApiStore.fetchPokeAPIHoenn();
-    print('Ótimo!! Conseguimos dar o fetch!');
     _pageController.addListener(() {
       int next = _pageController.page.round();
       if (_currentPage != next) {

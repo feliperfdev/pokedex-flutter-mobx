@@ -4,7 +4,7 @@ import 'package:pokedex_flutter_mobx/models/megasApi.dart';
 import 'package:pokedex_flutter_mobx/pages/widgets/PokeItem/pokeItem.dart';
 import 'package:pokedex_flutter_mobx/pages/widgets/appBar.dart';
 import 'package:pokedex_flutter_mobx/pages/widgets/darkPokeball.dart';
-import 'package:pokedex_flutter_mobx/stores/Mega/apiMega_store.dart';
+import 'package:pokedex_flutter_mobx/splash/fetchAll.dart';
 
 class Mega extends StatefulWidget {
   @override
@@ -12,8 +12,6 @@ class Mega extends StatefulWidget {
 }
 
 class _MegaState extends State<Mega> {
-  MegaApiStore megaApiStore;
-
   int _currentPage = 0;
   PageController _pageController = PageController(viewportFraction: 0.8);
 
@@ -21,10 +19,6 @@ class _MegaState extends State<Mega> {
   @override
   void initState() {
     super.initState();
-    megaApiStore = MegaApiStore();
-    print('Tentando dar fetch na API de Mega Evoluções...');
-    megaApiStore.fetchPokeMegaAPI();
-    print('Ótimo!! Conseguimos dar o fetch!');
     _pageController.addListener(() {
       int next = _pageController.page.round();
       if (_currentPage != next) {

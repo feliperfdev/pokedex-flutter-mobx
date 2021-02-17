@@ -4,7 +4,7 @@ import 'package:pokedex_flutter_mobx/models/pokeApiSinnoh.dart';
 import 'package:pokedex_flutter_mobx/pages/widgets/PokeItem/pokeItem.dart';
 import 'package:pokedex_flutter_mobx/pages/widgets/appBar.dart';
 import 'package:pokedex_flutter_mobx/pages/widgets/darkPokeball.dart';
-import 'package:pokedex_flutter_mobx/stores/Sinnoh/sinnohapi_store.dart';
+import 'package:pokedex_flutter_mobx/splash/fetchAll.dart';
 
 class Sinnoh extends StatefulWidget {
   @override
@@ -12,8 +12,6 @@ class Sinnoh extends StatefulWidget {
 }
 
 class _SinnohState extends State<Sinnoh> {
-  SinnohApiStore sinnohApiStore;
-
   int _currentPage = 0;
   PageController _pageController = PageController(viewportFraction: 0.8);
 
@@ -21,10 +19,6 @@ class _SinnohState extends State<Sinnoh> {
   @override
   void initState() {
     super.initState();
-    sinnohApiStore = SinnohApiStore();
-    print('Tentando dar fetch na API de Sinnoh...');
-    sinnohApiStore.fetchPokeAPISinnoh();
-    print('Ótimo!! Conseguimos dar o fetch!');
     _pageController.addListener(() {
       int next = _pageController.page.round();
       if (_currentPage != next) {

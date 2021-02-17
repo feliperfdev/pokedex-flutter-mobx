@@ -15,6 +15,10 @@
 - [x] Novo layout responsivo (apenas tela na vertical por enquanto).
 - [x] Splash screen animation
 
+### Hotfix v1.0.7.1
+
+- [x] Gerenciamento de fetch das APIs. Agora as APIs são chamadas de uma só vez durante o carregamento da tela de splash
+
 ## Sobre:
 
 Esse projeto serviu como uma boa base para os estudos da tecnologia de gerenciamento de estado MobX. <p>
