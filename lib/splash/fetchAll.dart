@@ -16,24 +16,13 @@ KalosApiStore kalosApiStore = KalosApiStore();
 
 fetchAllPokemonAPIs() {
   print('Tentando dar fetch nas APIs do app...');
-  Future.delayed(Duration(milliseconds: 100));
   megaApiStore.fetchPokeMegaAPI();
-  ///////////////////////////////////////////////////
   pokeApiStore.fetchPokeAPIKanto();
-  Future.delayed(Duration(milliseconds: 100));
-  ///////////////////////////////////////////////////
   johtoApiStore.fetchPokeAPIJohto();
-  Future.delayed(Duration(milliseconds: 100));
-  ///////////////////////////////////////////////////
   hoennApiStore.fetchPokeAPIHoenn();
-  Future.delayed(Duration(milliseconds: 100));
-  ///////////////////////////////////////////////////
   sinnohApiStore.fetchPokeAPISinnoh();
-  Future.delayed(Duration(milliseconds: 100));
-  ///////////////////////////////////////////////////
   unovaApiStore.fetchPokeAPIUnova();
-  Future.delayed(Duration(milliseconds: 100));
-  ///////////////////////////////////////////////////
   kalosApiStore.fetchPokeAPIKalos();
+  Future.delayed(Duration(milliseconds: 500));
   print('Ótimo!! Conseguimos dar o fetch nas APIs!');
 }

@@ -24,7 +24,7 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
     animation = CurvedAnimation(
       parent: controller,
       curve: Curves.easeInOutCubic,
-    ).drive(Tween(begin: 0, end: 2));
+    ).drive(Tween(begin: 0, end: 2.5));
 
     controller..forward();
     Future.delayed(Duration(seconds: 3), () {
